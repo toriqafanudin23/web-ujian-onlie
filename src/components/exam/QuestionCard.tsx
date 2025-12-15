@@ -116,66 +116,68 @@ export default function QuestionCard({
               />
             )}
 
-            <div className="border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl p-6">
-              <div className="text-center space-y-3">
-                <div className="flex justify-center">
-                  <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-6 h-6 text-primary-600 dark:text-primary-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
+            {question.type === "photo_upload" && (
+              <div className="border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl p-6">
+                <div className="text-center space-y-3">
+                  <div className="flex justify-center">
+                    <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-6 h-6 text-primary-600 dark:text-primary-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                    Upload Foto Jawaban
-                  </p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                    JPG, PNG, atau PDF (Max 5MB)
-                  </p>
-                </div>
-                <label className="inline-block">
-                  <input
-                    type="file"
-                    accept="image/jpeg,image/jpg,image/png,application/pdf"
-                    onChange={onPhotoUpload}
-                    className="hidden"
-                  />
-                  <span className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors cursor-pointer inline-block">
-                    Pilih File
-                  </span>
-                </label>
-              </div>
-
-              {answer && (
-                <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
-                  <p className="text-sm font-medium text-green-600 dark:text-green-400 mb-2">
-                    ✓ File berhasil diunggah
-                  </p>
-                  {answer.startsWith("data:image/") && (
-                    <img
-                      src={answer}
-                      alt="Preview"
-                      className="max-h-64 rounded-lg border border-slate-200 dark:border-slate-700 mx-auto"
-                    />
-                  )}
-                  {answer.startsWith("data:application/pdf") && (
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      📄 PDF File uploaded
+                  <div>
+                    <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                      Upload Foto Jawaban
                     </p>
-                  )}
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                      JPG, PNG, atau PDF (Max 5MB)
+                    </p>
+                  </div>
+                  <label className="inline-block">
+                    <input
+                      type="file"
+                      accept="image/jpeg,image/jpg,image/png,application/pdf"
+                      onChange={onPhotoUpload}
+                      className="hidden"
+                    />
+                    <span className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors cursor-pointer inline-block">
+                      Pilih File
+                    </span>
+                  </label>
                 </div>
-              )}
-            </div>
+
+                {answer && (
+                  <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                    <p className="text-sm font-medium text-green-600 dark:text-green-400 mb-2">
+                      ✓ File berhasil diunggah
+                    </p>
+                    {answer.startsWith("data:image/") && (
+                      <img
+                        src={answer}
+                        alt="Preview"
+                        className="max-h-64 rounded-lg border border-slate-200 dark:border-slate-700 mx-auto"
+                      />
+                    )}
+                    {answer.startsWith("data:application/pdf") && (
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        📄 PDF File uploaded
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>
