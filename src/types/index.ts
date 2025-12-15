@@ -41,6 +41,9 @@ export interface Question {
   keywords?: string[];
   difficulty?: 'easy' | 'medium' | 'hard';
   tags?: string[];
+  // Question Bank reference
+  questionBankId?: string; // Reference to question bank
+  isFromBank?: boolean;    // Flag if copied from bank
 }
 
 // Security Settings for Exams
@@ -102,6 +105,9 @@ export interface CreateQuestionData {
   keywords?: string[];
   difficulty?: 'easy' | 'medium' | 'hard';
   tags?: string[];
+  // Question Bank reference
+  questionBankId?: string;
+  isFromBank?: boolean;
 }
 
 // Activity Log Entry
@@ -153,3 +159,39 @@ export interface CommentTemplate {
   text: string;
   createdAt: string;
 }
+
+// Question Bank
+export interface QuestionBank {
+  id: string;
+  type: QuestionType;
+  text: string;
+  subject: string;
+  topic: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+  tags: string[];
+  points: number;
+  imageUrl?: string;
+  options?: Option[];
+  correctAnswer?: string;
+  createdBy: string;
+  createdAt: string;
+  updatedAt?: string;
+  usageCount: number;
+  isPublic: boolean;
+}
+
+export interface CreateQuestionBankData {
+  type: QuestionType;
+  text: string;
+  subject: string;
+  topic: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+  tags: string[];
+  points: number;
+  imageUrl?: string;
+  options?: Option[];
+  correctAnswer?: string;
+  createdBy: string;
+  isPublic: boolean;
+}
+

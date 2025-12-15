@@ -6,6 +6,7 @@ import {
   IoDocumentTextOutline,
   IoStatsChartOutline,
   IoPencilOutline,
+  IoBookOutline,
 } from "react-icons/io5";
 import { LuUsers } from "react-icons/lu";
 import { MdOutlineTimer } from "react-icons/md";
@@ -49,12 +50,6 @@ export default function Dashboard() {
     toast.success(`Kode ${code} berhasil disalin!`);
   };
 
-  const handleCopyLink = (examId: string) => {
-    const link = `${window.location.origin}/ujian/${examId}`;
-    navigator.clipboard.writeText(link);
-    toast.success(`Link ujian berhasil disalin!`);
-  };
-
   const totalParticipants = 0; // Will be calculated from submissions later
   const activeExams = exams.filter((e) => e.isActive).length;
 
@@ -78,6 +73,13 @@ export default function Dashboard() {
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
+            <Link
+              to="/admin/question-bank"
+              className="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200"
+            >
+              <IoBookOutline className="w-4 h-4" />
+              <span className="hidden sm:inline font-medium">Bank Soal</span>
+            </Link>
             <Link
               to="/"
               className="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200"
@@ -234,14 +236,6 @@ export default function Dashboard() {
                               title="Salin Kode"
                             >
                               <IoCopyOutline className="w-3 h-3 text-primary-600 dark:text-primary-400" />
-                            </button>
-                            <div className="w-px h-4 bg-primary-200 dark:bg-primary-800 mx-1"></div>
-                            <button
-                              onClick={() => handleCopyLink(exam.id)}
-                              className="text-xs text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-medium hover:underline cursor-pointer"
-                              title="Salin Link Ujian"
-                            >
-                              Salin Link
                             </button>
                           </div>
 

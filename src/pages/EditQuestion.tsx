@@ -8,10 +8,14 @@ import {
   IoTrashOutline,
   IoCheckmarkCircle,
   IoPencilOutline,
+  IoBookOutline,
+  IoCopyOutline,
+  IoPrintOutline,
 } from "react-icons/io5";
 import { MdRadioButtonUnchecked } from "react-icons/md";
 import toast from "react-hot-toast";
 import { useQuestions } from "../hooks/useQuestions";
+import { useQuestionBank } from "../hooks/useQuestionBank";
 import LatexRenderer from "../components/LatexRenderer";
 import type { QuestionType, Option, Question } from "../types";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -52,6 +56,13 @@ export default function EditQuestion() {
     null
   );
   const [isEditMode, setIsEditMode] = useState(false);
+
+  // Question Bank Integration
+  const { questions: bankQuestions, bulkCopyToExam } = useQuestionBank();
+  const [bankModalOpen, setBankModalOpen] = useState(false);
+  const [selectedBankQuestions, setSelectedBankQuestions] = useState<string[]>(
+    []
+  );
 
   // Removed previewMode state as we will show inline preview
 
@@ -167,6 +178,28 @@ export default function EditQuestion() {
     }
   };
 
+  const handleToggleBankQuestion = (id: string) => {
+    setSelectedBankQuestions((prev) =>
+      prev.includes(id) ? prev.filter((qid) => qid !== id) : [...prev, id]
+    );
+  };
+
+  const handleImportFromBank = async () => {
+    if (!examId || selectedBankQuestions.length === 0) return;
+    try {
+      await bulkCopyToExam(selectedBankQuestions, examId);
+      toast.success(
+        `${selectedBankQuestions.length} soal berhasil diimpor dari bank`
+      );
+      setSelectedBankQuestions([]);
+      setBankModalOpen(false);
+      refetch();
+    } catch (err) {
+      console.error(err);
+      toast.error("Gagal mengimpor soal dari bank");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
       {/* Header */}
@@ -186,6 +219,15 @@ export default function EditQuestion() {
             </div>
           </div>
           <div className="flex items-center gap-4">
+            <Link
+              to={`/admin/ujian/${examId}/cetak`}
+              target="_blank"
+              className="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200"
+              title="Cetak PDF"
+            >
+              <IoPrintOutline className="w-4 h-4" />
+              <span className="hidden sm:inline font-medium">Cetak / PDF</span>
+            </Link>
             <ThemeToggle />
             <Link
               to="/admin"
@@ -307,13 +349,16 @@ export default function EditQuestion() {
                   </span>
                 </label>
                 <textarea
-                  placeholder="Tulis pertanyaan di sini... Gunakan $ untuk rumus matematika"
+                  placeholder={String.raw`Tulis pertanyaan di sini... Contoh: Hitung $\int x^2 dx$ atau \frac{a}{b}`}
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   rows={5}
                   className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200 resize-none"
                   required
                 />
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  {String.raw`💡 Tip: Gunakan $ untuk inline LaTeX dan $$ untuk display LaTeX. Contoh: $\frac{a}{b}$, $\int x dx$, $\sum_{i=1}^n$`}
+                </p>
 
                 {/* Live Preview - Only show if text contains $ */}
                 {text.includes("$") && (
@@ -461,9 +506,18 @@ export default function EditQuestion() {
 
         {/* Question List */}
         <div className="space-y-4">
-          <h2 className="text-xl font-bold text-slate-800 dark:text-white">
-            Daftar Soal ({questions.length})
-          </h2>
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-bold text-slate-800 dark:text-white">
+              Daftar Soal ({questions.length})
+            </h2>
+            <button
+              onClick={() => setBankModalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-sm"
+            >
+              <IoBookOutline className="w-5 h-5" />
+              Import dari Bank Soal
+            </button>
+          </div>
 
           {loading && <LoadingSpinner />}
           {error && <ErrorMessage message={error} onRetry={refetch} />}
@@ -575,6 +629,116 @@ export default function EditQuestion() {
           Apakah Anda yakin ingin menghapus soal ini? Tindakan ini tidak dapat
           dibatalkan.
         </p>
+      </Modal>
+
+      {/* Question Bank Import Modal */}
+      <Modal
+        isOpen={bankModalOpen}
+        onClose={() => {
+          setBankModalOpen(false);
+          setSelectedBankQuestions([]);
+        }}
+        title="Import Soal dari Bank"
+        footer={
+          <div className="flex justify-end gap-3">
+            <button
+              onClick={() => {
+                setBankModalOpen(false);
+                setSelectedBankQuestions([]);
+              }}
+              className="px-4 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors"
+            >
+              Batal
+            </button>
+            <button
+              onClick={handleImportFromBank}
+              disabled={selectedBankQuestions.length === 0}
+              className="px-4 py-2 bg-primary-600 text-white hover:bg-primary-700 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              <IoCopyOutline className="w-4 h-4" />
+              Import{" "}
+              {selectedBankQuestions.length > 0 &&
+                `(${selectedBankQuestions.length})`}
+            </button>
+          </div>
+        }
+      >
+        <div className="space-y-4">
+          <p className="text-sm text-slate-600 dark:text-slate-400">
+            Pilih soal dari bank untuk diimpor ke ujian ini
+          </p>
+
+          {bankQuestions.length === 0 ? (
+            <div className="text-center py-8">
+              <p className="text-slate-500 dark:text-slate-400">
+                Belum ada soal di bank
+              </p>
+              <Link
+                to="/admin/question-bank/create"
+                className="inline-block mt-4 text-primary-600 dark:text-primary-400 hover:underline"
+              >
+                Tambah soal ke bank
+              </Link>
+            </div>
+          ) : (
+            <div className="max-h-96 overflow-y-auto space-y-3">
+              {bankQuestions.map((q) => (
+                <div
+                  key={q.id}
+                  onClick={() => handleToggleBankQuestion(q.id)}
+                  className={`p-4 border rounded-lg cursor-pointer transition-all ${
+                    selectedBankQuestions.includes(q.id)
+                      ? "border-primary-500 bg-primary-50 dark:bg-primary-900/20"
+                      : "border-slate-200 dark:border-slate-700 hover:border-primary-300 dark:hover:border-primary-700"
+                  }`}
+                >
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      checked={selectedBankQuestions.includes(q.id)}
+                      onChange={() => handleToggleBankQuestion(q.id)}
+                      className="mt-1 w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500"
+                    />
+                    <div className="flex-1">
+                      <div className="flex flex-wrap gap-2 mb-2">
+                        <span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs font-semibold rounded">
+                          {q.type.replace("_", " ")}
+                        </span>
+                        <span className="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-medium rounded">
+                          {q.subject}
+                        </span>
+                        <span className="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-medium rounded">
+                          {q.topic}
+                        </span>
+                        <span className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-semibold rounded">
+                          {q.difficulty}
+                        </span>
+                        <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold rounded">
+                          {q.points} pts
+                        </span>
+                      </div>
+                      <div className="text-sm text-slate-700 dark:text-slate-200 line-clamp-2">
+                        <LatexRenderer>{q.text}</LatexRenderer>
+                      </div>
+                      {q.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mt-2">
+                          {q.tags.map((tag, idx) => (
+                            <span
+                              key={idx}
+                              className="px-1.5 py-0.5 text-xs rounded bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400"
+                            >
+                              #{tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </Modal>
     </div>
   );

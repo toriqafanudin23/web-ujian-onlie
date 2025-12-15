@@ -1,0 +1,562 @@
+{
+  "exams": [
+    {
+      "id": "4",
+      "title": "UTS Aljabar Linear",
+      "description": "Evaluasi pemahaman materi matriks, vektor, dan sistem persamaan linear.",
+      "code": "ALIN01",
+      "duration": 120,
+      "startTime": "2024-02-01T08:00:00",
+      "endTime": "2024-02-01T12:00:00",
+      "isActive": false,
+      "createdAt": "2024-01-25T10:00:00"
+    },
+    {
+      "id": "5",
+      "title": "UTS Kalkulus",
+      "description": "Evaluasi pemahaman materi turunan, integral, limit, dan kontinuitas fungsi.",
+      "code": "CALC02",
+      "duration": 90,
+      "startTime": "2024-02-15T08:00:00",
+      "endTime": "2024-02-15T12:00:00",
+      "isActive": true,
+      "createdAt": "2024-02-10T10:00:00"
+    }
+  ],
+  "questions": [
+    {
+      "id": "calc-1",
+      "examId": "5",
+      "type": "multiple_choice",
+      "text": "Tentukan turunan dari fungsi $f(x) = 3x^4 - 2x^3 + 5x - 7$",
+      "points": 20,
+      "options": [
+        {
+          "id": "a",
+          "text": "$f'(x) = 12x^3 - 6x^2 + 5$",
+          "isCorrect": true
+        },
+        {
+          "id": "b",
+          "text": "$f'(x) = 12x^3 - 6x^2 + 5x$",
+          "isCorrect": false
+        },
+        {
+          "id": "c",
+          "text": "$f'(x) = 3x^3 - 2x^2 + 5$",
+          "isCorrect": false
+        },
+        {
+          "id": "d",
+          "text": "$f'(x) = 12x^4 - 6x^3 + 5x$",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "calc-2",
+      "examId": "5",
+      "type": "multiple_choice",
+      "text": "Hitunglah $\\int (4x^3 + 6x^2 - 2x) \\, dx$",
+      "points": 20,
+      "options": [
+        {
+          "id": "a",
+          "text": "$x^4 + 2x^3 - x^2 + C$",
+          "isCorrect": true
+        },
+        {
+          "id": "b",
+          "text": "$12x^2 + 12x - 2 + C$",
+          "isCorrect": false
+        },
+        {
+          "id": "c",
+          "text": "$x^4 + 2x^3 - x + C$",
+          "isCorrect": false
+        },
+        {
+          "id": "d",
+          "text": "$4x^4 + 6x^3 - 2x^2 + C$",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "calc-3",
+      "examId": "5",
+      "type": "short_answer",
+      "text": "Tentukan nilai dari $\\lim_{x \\to 2} \\frac{x^2 - 4}{x - 2}$",
+      "points": 20,
+      "correctAnswer": "4"
+    },
+    {
+      "id": "calc-4",
+      "examId": "5",
+      "type": "short_answer",
+      "text": "Jika $f(x) = \\sin(x) \\cdot \\cos(x)$, tentukan $f'(\\frac{\\pi}{4})$",
+      "points": 20,
+      "correctAnswer": "0"
+    },
+    {
+      "id": "calc-5",
+      "examId": "5",
+      "type": "essay",
+      "text": "Jelaskan dengan lengkap mengapa fungsi $f(x) = \\frac{1}{x}$ tidak kontinu di $x = 0$. Sertakan definisi kontinuitas dalam jawaban Anda dan tunjukkan mengapa kondisi kontinuitas tidak terpenuhi di titik tersebut.",
+      "points": 20,
+      "correctAnswer": ""
+    },
+    {
+      "id": "lin-alg-1",
+      "examId": "4",
+      "type": "multiple_choice",
+      "text": "Jika $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$ dan $B = \\begin{pmatrix} 2 & 0 \\\\ 1 & 2 \\end{pmatrix}$, berapakah hasil dari $A \\cdot B$?",
+      "points": 25,
+      "options": [
+        {
+          "id": "a",
+          "text": "$\\begin{pmatrix} 4 & 4 \\\\ 10 & 8 \\end{pmatrix}$",
+          "isCorrect": true
+        },
+        {
+          "id": "b",
+          "text": "$\\begin{pmatrix} 2 & 0 \\\\ 3 & 8 \\end{pmatrix}$",
+          "isCorrect": false
+        },
+        {
+          "id": "c",
+          "text": "$\\begin{pmatrix} 4 & 4 \\\\ 10 & 6 \\end{pmatrix}$",
+          "isCorrect": false
+        },
+        {
+          "id": "d",
+          "text": "$\\begin{pmatrix} 2 & 4 \\\\ 4 & 6 \\end{pmatrix}$",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "lin-alg-2",
+      "examId": "4",
+      "type": "short_answer",
+      "text": "Tentukan determinan dari matriks $\\begin{pmatrix} 3 & 1 \\\\ 2 & 4 \\end{pmatrix}$",
+      "points": 25,
+      "correctAnswer": "10"
+    },
+    {
+      "id": "610dcd7a-4d31-4b25-8b30-7539cd0cb770",
+      "examId": "5",
+      "type": "multiple_choice",
+      "text": "Turunan kedua dari fungsi $f(x) = e^{2x}$ adalah:",
+      "points": 15,
+      "options": [
+        {
+          "id": "a",
+          "text": "$f''(x) = 2e^{2x}$",
+          "isCorrect": false
+        },
+        {
+          "id": "b",
+          "text": "$f''(x) = 4e^{2x}$",
+          "isCorrect": true
+        },
+        {
+          "id": "c",
+          "text": "$f''(x) = e^{2x}$",
+          "isCorrect": false
+        },
+        {
+          "id": "d",
+          "text": "$f''(x) = 2xe^{2x}$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "medium",
+      "tags": [
+        "derivatives",
+        "exponential",
+        "second-derivative"
+      ],
+      "questionBankId": "qb-7",
+      "isFromBank": true
+    },
+    {
+      "id": "457d676f-cf0c-4501-b8b9-e2f12c40e478",
+      "examId": "4",
+      "type": "multiple_choice",
+      "text": "Sebuah matriks $A$ memiliki ordo $3 \\times 3$. Jika determinan dari $A$ adalah $det(A) = 5$, berapakah determinan dari $2A$?",
+      "points": 15,
+      "options": [
+        {
+          "id": "a",
+          "text": "$det(2A) = 10$",
+          "isCorrect": false
+        },
+        {
+          "id": "b",
+          "text": "$det(2A) = 40$",
+          "isCorrect": true
+        },
+        {
+          "id": "c",
+          "text": "$det(2A) = 5$",
+          "isCorrect": false
+        },
+        {
+          "id": "d",
+          "text": "$det(2A) = 25$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "medium",
+      "tags": [
+        "matrices",
+        "determinant",
+        "properties"
+      ],
+      "questionBankId": "qb-1",
+      "isFromBank": true
+    }
+  ],
+  "results": [
+    {
+      "id": "8cea0a90-054b-434a-b1e5-e53a77d3ca6d",
+      "examId": "5",
+      "studentName": "Faisa Nirbita",
+      "score": 55,
+      "correctCount": 2,
+      "totalQuestions": 5,
+      "answers": {
+        "calc-1": "a",
+        "calc-2": "a",
+        "calc-3": "1",
+        "calc-4": "1",
+        "calc-5": "tidak tahu"
+      },
+      "gradingStatus": "graded",
+      "submittedAt": "2025-12-15T04:42:19.894Z",
+      "manualGrades": {
+        "calc-5": 5,
+        "calc-3": 5,
+        "calc-4": 5
+      },
+      "feedback": {},
+      "gradedBy": "Admin",
+      "gradedAt": "2025-12-15T10:40:15.989Z"
+    },
+    {
+      "id": "1cae506a-e25f-470e-976c-11ab1e8155c4",
+      "examId": "5",
+      "studentName": "Adhira Mahesha",
+      "score": 65,
+      "correctCount": 2,
+      "totalQuestions": 5,
+      "answers": {
+        "calc-1": "a",
+        "calc-2": "a",
+        "calc-3": "4",
+        "calc-4": "5",
+        "calc-5": "tidah tahu"
+      },
+      "gradingStatus": "graded",
+      "submittedAt": "2025-12-15T04:51:58.273Z",
+      "manualGrades": {
+        "calc-3": 10,
+        "calc-4": 10,
+        "calc-5": 5
+      },
+      "feedback": {
+        "calc-3": "tetap semangat",
+        "calc-5": "good luck"
+      },
+      "gradedBy": "Admin",
+      "gradedAt": "2025-12-15T06:12:27.230Z"
+    },
+    {
+      "id": "6303ce04-c678-4613-9b16-aed620667a4b",
+      "examId": "5",
+      "studentName": "test2",
+      "score": 40,
+      "correctCount": 2,
+      "totalQuestions": 5,
+      "answers": {
+        "calc-1": "a",
+        "calc-2": "a",
+        "calc-3": "1",
+        "calc-4": "2",
+        "calc-5": "3"
+      },
+      "gradingStatus": "pending_review",
+      "submittedAt": "2025-12-15T06:22:46.289Z"
+    },
+    {
+      "id": "fd8202ad-d798-440c-bf76-12860fad1913",
+      "examId": "5",
+      "studentName": "test3",
+      "score": 40,
+      "correctCount": 2,
+      "totalQuestions": 5,
+      "answers": {
+        "calc-1": "a",
+        "calc-2": "a",
+        "calc-3": "4",
+        "calc-4": "1",
+        "calc-5": "p"
+      },
+      "gradingStatus": "pending_review",
+      "submittedAt": "2025-12-15T09:05:02.119Z"
+    },
+    {
+      "id": "705cea5d-6904-4b0c-ad83-17abf3c80759",
+      "examId": "5",
+      "studentName": "test4",
+      "score": 20,
+      "correctCount": 1,
+      "totalQuestions": 5,
+      "answers": {
+        "calc-1": "b",
+        "calc-2": "a",
+        "calc-3": "4",
+        "calc-4": "4",
+        "calc-5": "4"
+      },
+      "gradingStatus": "pending_review",
+      "submittedAt": "2025-12-15T09:25:38.909Z"
+    }
+  ],
+  "questionBank": [
+    {
+      "id": "qb-1",
+      "type": "multiple_choice",
+      "text": "Sebuah matriks $A$ memiliki ordo $3 \\times 3$. Jika determinan dari $A$ adalah $det(A) = 5$, berapakah determinan dari $2A$?",
+      "subject": "Mathematics",
+      "topic": "Linear Algebra",
+      "difficulty": "medium",
+      "tags": [
+        "matrices",
+        "determinant",
+        "properties"
+      ],
+      "points": 15,
+      "options": [
+        {
+          "id": "a",
+          "text": "$det(2A) = 10$",
+          "isCorrect": false
+        },
+        {
+          "id": "b",
+          "text": "$det(2A) = 40$",
+          "isCorrect": true
+        },
+        {
+          "id": "c",
+          "text": "$det(2A) = 5$",
+          "isCorrect": false
+        },
+        {
+          "id": "d",
+          "text": "$det(2A) = 25$",
+          "isCorrect": false
+        }
+      ],
+      "createdBy": "Admin",
+      "createdAt": "2025-12-15T18:54:34.204142",
+      "usageCount": 1,
+      "isPublic": true
+    },
+    {
+      "id": "qb-2",
+      "type": "short_answer",
+      "text": "Hitung integral dari $\\int (3x^2 + 2x - 5) dx$",
+      "subject": "Mathematics",
+      "topic": "Calculus",
+      "difficulty": "easy",
+      "tags": [
+        "integration",
+        "polynomial"
+      ],
+      "points": 10,
+      "correctAnswer": "$x^3 + x^2 - 5x + C$",
+      "createdBy": "Admin",
+      "createdAt": "2025-12-15T18:54:34.204179",
+      "usageCount": 0,
+      "isPublic": true
+    },
+    {
+      "id": "qb-3",
+      "type": "multiple_choice",
+      "text": "Manakah dari pernyataan berikut yang benar tentang vektor di $\\mathbb{R}^3$?",
+      "subject": "Mathematics",
+      "topic": "Linear Algebra",
+      "difficulty": "medium",
+      "tags": [
+        "vectors",
+        "properties",
+        "3d-space"
+      ],
+      "points": 15,
+      "options": [
+        {
+          "id": "a",
+          "text": "Dua vektor yang parallel selalu memiliki magnitude yang sama",
+          "isCorrect": false
+        },
+        {
+          "id": "b",
+          "text": "Perkalian dot product dari dua vektor orthogonal adalah nol",
+          "isCorrect": true
+        },
+        {
+          "id": "c",
+          "text": "Cross product bersifat komutatif",
+          "isCorrect": false
+        },
+        {
+          "id": "d",
+          "text": "Setiap vektor di $\\mathbb{R}^3$ memiliki inverse",
+          "isCorrect": false
+        }
+      ],
+      "createdBy": "Admin",
+      "createdAt": "2025-12-15T18:54:34.204187",
+      "usageCount": 0,
+      "isPublic": true
+    },
+    {
+      "id": "qb-4",
+      "type": "essay",
+      "text": "Jelaskan konsep eigenvalue dan eigenvector dalam aljabar linear. Berikan contoh aplikasinya dalam kehidupan nyata.",
+      "subject": "Mathematics",
+      "topic": "Linear Algebra",
+      "difficulty": "hard",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "applications"
+      ],
+      "points": 25,
+      "createdBy": "Admin",
+      "createdAt": "2025-12-15T18:54:34.204192",
+      "usageCount": 0,
+      "isPublic": true
+    },
+    {
+      "id": "qb-5",
+      "type": "short_answer",
+      "text": "Tentukan limit dari $\\lim_{x \\to 0} \\frac{\\sin(x)}{x}$",
+      "subject": "Mathematics",
+      "topic": "Calculus",
+      "difficulty": "easy",
+      "tags": [
+        "limits",
+        "trigonometry"
+      ],
+      "points": 10,
+      "correctAnswer": "1",
+      "createdBy": "Admin",
+      "createdAt": "2025-12-15T18:54:34.204197",
+      "usageCount": 0,
+      "isPublic": true
+    },
+    {
+      "id": "qb-6",
+      "type": "multiple_choice",
+      "text": "Sebuah sistem persamaan linear memiliki 3 persamaan dan 4 variabel. Manakah pernyataan yang benar?",
+      "subject": "Mathematics",
+      "topic": "Linear Algebra",
+      "difficulty": "hard",
+      "tags": [
+        "linear-systems",
+        "solutions",
+        "rank"
+      ],
+      "points": 20,
+      "options": [
+        {
+          "id": "a",
+          "text": "Sistem pasti memiliki solusi unik",
+          "isCorrect": false
+        },
+        {
+          "id": "b",
+          "text": "Sistem tidak mungkin memiliki solusi",
+          "isCorrect": false
+        },
+        {
+          "id": "c",
+          "text": "Sistem memiliki infinitely many solutions jika consistent",
+          "isCorrect": true
+        },
+        {
+          "id": "d",
+          "text": "Sistem selalu inconsistent",
+          "isCorrect": false
+        }
+      ],
+      "createdBy": "Admin",
+      "createdAt": "2025-12-15T18:54:34.204203",
+      "usageCount": 0,
+      "isPublic": true
+    },
+    {
+      "id": "qb-7",
+      "type": "multiple_choice",
+      "text": "Turunan kedua dari fungsi $f(x) = e^{2x}$ adalah:",
+      "subject": "Mathematics",
+      "topic": "Calculus",
+      "difficulty": "medium",
+      "tags": [
+        "derivatives",
+        "exponential",
+        "second-derivative"
+      ],
+      "points": 15,
+      "options": [
+        {
+          "id": "a",
+          "text": "$f''(x) = 2e^{2x}$",
+          "isCorrect": false
+        },
+        {
+          "id": "b",
+          "text": "$f''(x) = 4e^{2x}$",
+          "isCorrect": true
+        },
+        {
+          "id": "c",
+          "text": "$f''(x) = e^{2x}$",
+          "isCorrect": false
+        },
+        {
+          "id": "d",
+          "text": "$f''(x) = 2xe^{2x}$",
+          "isCorrect": false
+        }
+      ],
+      "createdBy": "Admin",
+      "createdAt": "2025-12-15T18:54:34.204209",
+      "usageCount": 1,
+      "isPublic": true
+    },
+    {
+      "id": "qb-8",
+      "type": "short_answer",
+      "text": "Jika matriks $A = \\begin{bmatrix} 2 & 3 \\\\ 1 & 4 \\end{bmatrix}$, hitung $det(A)$",
+      "subject": "Mathematics",
+      "topic": "Linear Algebra",
+      "difficulty": "easy",
+      "tags": [
+        "matrices",
+        "determinant",
+        "2x2"
+      ],
+      "points": 10,
+      "correctAnswer": "5",
+      "createdBy": "Admin",
+      "createdAt": "2025-12-15T18:54:34.204214",
+      "usageCount": 0,
+      "isPublic": true
+    }
+  ]
+}
