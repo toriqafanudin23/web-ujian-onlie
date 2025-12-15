@@ -7,7 +7,7 @@ import { MdOutlineTimer } from "react-icons/md";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { CiCircleCheck } from "react-icons/ci";
 import { LuUsersRound } from "react-icons/lu";
-import { IoKeyOutline } from "react-icons/io5";
+import { IoKeyOutline, IoInformationCircleOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
 import { examApi } from "../services/api";
 import ThemeToggle from "../components/ThemeToggle";
@@ -28,11 +28,6 @@ const features = [
     icon: <IoShieldCheckmarkOutline className="w-6 h-6" />,
     title: "Akses Terkendali",
     description: "Kode ujian unik untuk setiap sesi ujian",
-  },
-  {
-    icon: <CiCircleCheck className="w-6 h-6" />,
-    title: "Mudah Digunakan",
-    description: "Interface sederhana dan intuitif",
   },
   {
     icon: <CiCircleCheck className="w-6 h-6" />,
@@ -174,9 +169,20 @@ export default function Index() {
                 {/* Form */}
                 <form onSubmit={handleJoinExam} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                      Nama Peserta
-                    </label>
+                    <div className="flex items-center gap-2 mb-1">
+                      <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        Nama Peserta
+                      </label>
+                      <div className="group relative">
+                        <IoInformationCircleOutline className="w-4 h-4 text-slate-400 hover:text-primary-600 cursor-help transition-colors" />
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-slate-800 text-white text-xs rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 shadow-lg pointer-events-none">
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-800"></div>
+                          ⚠️ <strong>Penting:</strong> Masukkan nama yang sesuai
+                          (nama asli) untuk memastikan hasil ujian dapat dinilai
+                          dengan benar
+                        </div>
+                      </div>
+                    </div>
                     <input
                       type="text"
                       placeholder="Masukan Nama Lengkap"
@@ -185,11 +191,6 @@ export default function Index() {
                       className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200 font-medium"
                       required
                     />
-                    <p className="text-xs text-amber-700 dark:text-amber-400 mt-1">
-                      ⚠️ <strong>Penting:</strong> Masukkan nama yang sesuai
-                      (nama asli) untuk memastikan hasil ujian dapat dinilai
-                      dengan benar
-                    </p>
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
