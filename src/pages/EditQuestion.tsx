@@ -173,14 +173,14 @@ export default function EditQuestion() {
       <header className="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
               <PiGraduationCapBold className="w-6 h-6 text-white" />
             </div>
             <div className="flex items-center gap-2">
               <span className="text-xl font-bold text-slate-800 dark:text-white">
                 ExamPro
               </span>
-              <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-md">
+              <span className="px-2 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-xs font-semibold rounded-md">
                 Admin
               </span>
             </div>
@@ -203,7 +203,7 @@ export default function EditQuestion() {
         {/* Form Container */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm">
           {/* Card Header */}
-          <div className="border-b border-slate-200 dark:border-slate-800 bg-purple-50 dark:bg-purple-900/20 px-6 py-4 rounded-t-2xl flex justify-between items-center">
+          <div className="border-b border-slate-200 dark:border-slate-800 bg-primary-50 dark:bg-primary-900/20 px-6 py-4 rounded-t-2xl flex justify-between items-center">
             <div>
               <h1 className="text-2xl font-bold text-slate-800 dark:text-white">
                 {isEditMode ? "Edit Soal" : "Tambah Soal Baru"}
@@ -218,7 +218,7 @@ export default function EditQuestion() {
               <button
                 type="button"
                 onClick={handleCancelEdit}
-                className="px-4 py-2 text-sm border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                className="px-4 py-2 text-sm border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors cursor-pointer"
               >
                 Batal Edit
               </button>
@@ -237,7 +237,7 @@ export default function EditQuestion() {
                 <select
                   value={type}
                   onChange={(e) => setType(e.target.value as QuestionType)}
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200"
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200 cursor-pointer"
                 >
                   <option value="multiple_choice">Pilihan Ganda</option>
                   <option value="short_answer">Isian Singkat</option>
@@ -256,7 +256,7 @@ export default function EditQuestion() {
                   min={1}
                   value={points}
                   onChange={(e) => setPoints(Number(e.target.value))}
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200"
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200"
                   required
                 />
               </div>
@@ -276,7 +276,7 @@ export default function EditQuestion() {
                       placeholder="https://example.com/image.jpg"
                       value={imageUrl}
                       onChange={(e) => setImageUrl(e.target.value)}
-                      className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200"
                     />
                     <p className="text-xs text-slate-500 dark:text-slate-400">
                       Masukkan URL gambar langsung (akhiran .jpg, .png, dll)
@@ -311,7 +311,7 @@ export default function EditQuestion() {
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   rows={5}
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200 resize-none"
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200 resize-none"
                   required
                 />
 
@@ -340,7 +340,7 @@ export default function EditQuestion() {
                     type="button"
                     onClick={handleAddOption}
                     disabled={options.length >= 6}
-                    className="flex items-center gap-2 px-3 py-2 text-sm border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center gap-2 px-3 py-2 text-sm border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                   >
                     <IoAddCircleOutline className="w-4 h-4" />
                     Tambah Pilihan
@@ -366,7 +366,7 @@ export default function EditQuestion() {
                           onChange={(e) =>
                             handleOptionTextChange(option.id, e.target.value)
                           }
-                          className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200"
+                          className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200"
                         />
                         {/* Option Preview - Only show if text contains $ */}
                         {option.text.includes("$") && (
@@ -380,7 +380,7 @@ export default function EditQuestion() {
                       <button
                         type="button"
                         onClick={() => handleCorrectOptionChange(option.id)}
-                        className={`flex items-center gap-2 px-4 py-3 rounded-lg font-semibold transition-all duration-200 shrink-0 ${
+                        className={`flex items-center gap-2 px-4 py-3 rounded-lg font-semibold transition-all duration-200 shrink-0 cursor-pointer ${
                           option.isCorrect
                             ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-2 border-green-500"
                             : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700"
@@ -404,7 +404,7 @@ export default function EditQuestion() {
                         type="button"
                         onClick={() => handleRemoveOption(option.id)}
                         disabled={options.length <= 2}
-                        className="p-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+                        className="p-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed shrink-0 cursor-pointer"
                         title="Hapus pilihan"
                       >
                         <IoTrashOutline className="w-5 h-5" />
@@ -426,7 +426,7 @@ export default function EditQuestion() {
                   placeholder="Jawaban yang benar..."
                   value={correctAnswer}
                   onChange={(e) => setCorrectAnswer(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200"
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200"
                 />
                 <p className="text-xs text-slate-500 dark:text-slate-400">
                   Untuk penilaian otomatis (opsional)
@@ -436,7 +436,7 @@ export default function EditQuestion() {
 
             {/* Info untuk Essay & Photo Upload */}
             {(type === "essay" || type === "photo_upload") && (
-              <div className="p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
+              <div className="p-4 rounded-xl bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800">
                 <p className="text-sm text-slate-700 dark:text-slate-300">
                   <span className="font-semibold">ℹ️ Info:</span>{" "}
                   {type === "essay"
@@ -450,7 +450,7 @@ export default function EditQuestion() {
             <div className="flex gap-3 pt-4">
               <button
                 type="submit"
-                className="w-full sm:w-auto px-8 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 cursor-pointer"
               >
                 <IoSaveOutline className="w-5 h-5" />
                 {isEditMode ? "Perbarui Soal" : "Simpan Soal"}
@@ -480,7 +480,7 @@ export default function EditQuestion() {
                       <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold px-2 py-1 rounded">
                         No. {index + 1}
                       </span>
-                      <span className="bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300 text-xs font-semibold px-2 py-1 rounded uppercase">
+                      <span className="bg-primary-100 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 text-xs font-semibold px-2 py-1 rounded uppercase">
                         {q.type.replace("_", " ")}
                       </span>
                       <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-xs font-semibold px-2 py-1 rounded">
@@ -530,14 +530,14 @@ export default function EditQuestion() {
                   <div className="ml-4 flex gap-2">
                     <button
                       onClick={() => handleEditQuestion(q)}
-                      className="p-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                      className="p-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors cursor-pointer"
                       title="Edit Soal"
                     >
                       <IoPencilOutline className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => confirmDelete(q.id)}
-                      className="p-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                      className="p-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors cursor-pointer"
                       title="Hapus Soal"
                     >
                       <IoTrashOutline className="w-5 h-5" />
@@ -558,13 +558,13 @@ export default function EditQuestion() {
           <div className="flex justify-end gap-3">
             <button
               onClick={() => setDeleteModalOpen(false)}
-              className="px-4 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors"
+              className="px-4 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors cursor-pointer"
             >
               Batal
             </button>
             <button
               onClick={handleDelete}
-              className="px-4 py-2 bg-red-600 text-white hover:bg-red-700 rounded-lg font-medium transition-colors"
+              className="px-4 py-2 bg-red-600 text-white hover:bg-red-700 rounded-lg font-medium transition-colors cursor-pointer"
             >
               Hapus
             </button>

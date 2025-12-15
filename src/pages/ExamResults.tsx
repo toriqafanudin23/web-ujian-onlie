@@ -6,9 +6,10 @@ import {
   IoArrowBack,
   IoStatsChartOutline,
   IoTrashOutline,
+  IoDownloadOutline,
 } from "react-icons/io5";
 import { MdOutlineTimer } from "react-icons/md";
-import { resultApi } from "../services/api";
+import { resultApi, examApi } from "../services/api";
 import type { ExamResult } from "../types";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorMessage from "../components/ErrorMessage";
@@ -17,10 +18,13 @@ import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import toast from "react-hot-toast";
 import ThemeToggle from "../components/ThemeToggle";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 export default function ExamResults() {
   const { examId } = useParams<{ examId: string }>();
   const [results, setResults] = useState<ExamResult[]>([]);
+  const [examTitle, setExamTitle] = useState("Hasil Ujian");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -38,9 +42,17 @@ export default function ExamResults() {
   const loadResults = async (id: string) => {
     try {
       setLoading(true);
-      const data = await resultApi.getByExamId(id);
+      const [resultsData, examData] = await Promise.all([
+        resultApi.getByExamId(id),
+        examApi.getById(id).catch(() => null),
+      ]);
+
+      if (examData) {
+        setExamTitle(examData.title);
+      }
+
       // Sort by score (descending) then by submittedAt (ascending)
-      const sorted = data.sort((a, b) => {
+      const sorted = resultsData.sort((a, b) => {
         if (b.score !== a.score) return b.score - a.score;
         return (
           new Date(a.submittedAt).getTime() - new Date(b.submittedAt).getTime()
@@ -58,6 +70,37 @@ export default function ExamResults() {
   const confirmDelete = (id: string, name: string) => {
     setResultToDelete({ id, name });
     setDeleteModalOpen(true);
+  };
+
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+
+    // Add title
+    doc.setFontSize(18);
+    doc.text(`Hasil Ujian: ${examTitle}`, 14, 22);
+
+    // Add Stats
+    doc.setFontSize(11);
+    doc.text(`Rata-rata: ${stats.avg}`, 14, 32);
+    doc.text(`Nilai Tertinggi: ${stats.highest}`, 70, 32);
+    doc.text(`Nilai Terendah: ${stats.lowest}`, 130, 32);
+
+    // Prepare data for table
+    const tableData = results.map((result, index) => [
+      index + 1,
+      result.studentName,
+      result.score,
+    ]);
+
+    // Generate table
+    autoTable(doc, {
+      head: [["No", "Nama Peserta", "Nilai"]],
+      body: tableData,
+      startY: 40,
+    });
+
+    // Save PDF
+    doc.save(`hasil-ujian-${examId}.pdf`);
   };
 
   const handleDelete = async () => {
@@ -103,14 +146,14 @@ export default function ExamResults() {
       <header className="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
               <PiGraduationCapBold className="w-6 h-6 text-white" />
             </div>
             <div className="flex items-center gap-2">
               <span className="text-xl font-bold text-slate-800 dark:text-white">
                 ExamPro
               </span>
-              <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-md">
+              <span className="px-2 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-xs font-semibold rounded-md">
                 Admin
               </span>
             </div>
@@ -139,6 +182,13 @@ export default function ExamResults() {
               Daftar nilai peserta ujian
             </p>
           </div>
+          <button
+            onClick={downloadPDF}
+            className="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-sm hover:shadow-md cursor-pointer"
+          >
+            <IoDownloadOutline className="w-5 h-5" />
+            Download PDF
+          </button>
         </div>
 
         {/* Stats Cards */}
@@ -181,7 +231,7 @@ export default function ExamResults() {
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden">
           <div className="p-6 border-b border-slate-200 dark:border-slate-800">
             <h3 className="font-bold text-slate-800 dark:text-white flex items-center gap-2">
-              <IoStatsChartOutline className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+              <IoStatsChartOutline className="w-5 h-5 text-primary-600 dark:text-primary-400" />
               Detail Peserta
             </h3>
           </div>
@@ -266,7 +316,7 @@ export default function ExamResults() {
                         )}
                       </td>
                       <td className="px-6 py-4 text-sm text-center">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">
                           {result.correctCount} / {result.totalQuestions}
                         </span>
                       </td>
@@ -287,7 +337,7 @@ export default function ExamResults() {
                         {result.gradingStatus === "pending_review" ? (
                           <Link
                             to={`/grade/${examId}/${result.id}`}
-                            className="inline-flex items-center gap-1 px-3 py-1.5 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors"
+                            className="inline-flex items-center gap-1 px-3 py-1.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors"
                           >
                             <IoPencilOutline className="w-4 h-4" />
                             Nilai
@@ -311,7 +361,7 @@ export default function ExamResults() {
                           onClick={() =>
                             confirmDelete(result.id, result.studentName)
                           }
-                          className="p-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                          className="p-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors cursor-pointer"
                           title="Hapus Peserta"
                         >
                           <IoTrashOutline className="w-5 h-5" />
@@ -334,13 +384,13 @@ export default function ExamResults() {
           <div className="flex justify-end gap-3">
             <button
               onClick={() => setDeleteModalOpen(false)}
-              className="px-4 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors"
+              className="px-4 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors cursor-pointer"
             >
               Batal
             </button>
             <button
               onClick={handleDelete}
-              className="px-4 py-2 bg-red-600 text-white hover:bg-red-700 rounded-lg font-medium transition-colors"
+              className="px-4 py-2 bg-red-600 text-white hover:bg-red-700 rounded-lg font-medium transition-colors cursor-pointer"
             >
               Hapus
             </button>

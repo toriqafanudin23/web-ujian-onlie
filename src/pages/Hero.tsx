@@ -83,7 +83,7 @@ export default function Index() {
       <header className="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
               <PiGraduationCapBold className="w-6 h-6 text-white" />
             </div>
             <span className="text-xl font-bold text-slate-800 dark:text-white">
@@ -94,7 +94,7 @@ export default function Index() {
             <ThemeToggle />
             <Link
               to="/admin"
-              className="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200"
+              className="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200 cursor-pointer"
             >
               <IoSettingsOutline className="w-4 h-4" />
               <span className="hidden sm:inline font-medium">Admin Panel</span>
@@ -109,7 +109,7 @@ export default function Index() {
           {/* Left Content */}
           <div className="space-y-8">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-sm font-medium">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-sm font-medium">
               <LuUsersRound className="w-4 h-4" />
               Platform Ujian Online
             </div>
@@ -117,7 +117,7 @@ export default function Index() {
             {/* Hero Title */}
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight text-slate-800 dark:text-white">
               Ujian Online
-              <span className="block mt-2 text-purple-600 dark:text-purple-400">
+              <span className="block mt-2 text-primary-600 dark:text-primary-400">
                 Lebih Mudah & Efisien
               </span>
             </h1>
@@ -136,7 +136,7 @@ export default function Index() {
                   key={index}
                   className="flex items-start gap-3 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-lg transition-all duration-200"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 dark:text-primary-400 shrink-0">
                     {feature.icon}
                   </div>
                   <div>
@@ -158,7 +158,7 @@ export default function Index() {
               <div className="space-y-6">
                 {/* Form Header */}
                 <div className="flex items-start gap-3 pb-6 border-b border-slate-200 dark:border-slate-800">
-                  <div className="flex items-center justify-center w-12 h-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl shrink-0">
+                  <div className="flex items-center justify-center w-12 h-12 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-xl shrink-0">
                     <IoKeyOutline className="w-6 h-6" />
                   </div>
                   <div>
@@ -182,7 +182,7 @@ export default function Index() {
                       placeholder="Masukan Nama Lengkap"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200 font-medium"
+                      className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200 font-medium"
                       required
                     />
                     <p className="text-xs text-amber-700 dark:text-amber-400 mt-1">
@@ -200,27 +200,27 @@ export default function Index() {
                       placeholder="Masukan Kode Ujian"
                       value={code}
                       onChange={(e) => setCode(e.target.value)}
-                      className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200 font-medium tracking-wide uppercase"
+                      className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200 font-medium tracking-wide uppercase"
                       required
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 active:bg-purple-800 transition-colors duration-200 shadow-sm hover:shadow-md hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 active:bg-primary-800 transition-colors duration-200 shadow-sm hover:shadow-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? "Memproses..." : "Lanjutkan"}
                   </button>
                 </form>
 
                 {/* Demo Info */}
-                <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-xl p-4">
+                <div className="bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-xl p-4">
                   <p className="text-sm text-center text-slate-600 dark:text-slate-300 leading-relaxed">
                     <span className="font-semibold text-slate-800 dark:text-white">
                       Demo:
                     </span>{" "}
                     Gunakan kode{" "}
-                    <code className="px-2 py-1 rounded bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 font-mono font-bold">
+                    <code className="px-2 py-1 rounded bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-300 font-mono font-bold">
                       CALC02
                     </code>{" "}
                     untuk mencoba ujian

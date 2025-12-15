@@ -23,11 +23,11 @@ export default function QuestionNavigator({
           <button
             key={q.id}
             onClick={() => onNavigate(idx)}
-            className={`aspect-square rounded-lg flex items-center justify-center text-sm font-semibold transition-colors ${
+            className={`aspect-square rounded-lg flex items-center justify-center text-sm font-semibold transition-colors cursor-pointer ${
               currentQuestionIndex === idx
-                ? "bg-purple-600 text-white shadow-md ring-2 ring-purple-200 dark:ring-purple-500/50"
+                ? "bg-primary-600 text-white shadow-md ring-2 ring-primary-200 dark:ring-primary-500/50"
                 : answers[q.id]
-                ? "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800"
+                ? "bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 border border-primary-200 dark:border-primary-800"
                 : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700"
             }`}
           >
@@ -37,10 +37,10 @@ export default function QuestionNavigator({
       </div>
       <div className="mt-6 space-y-2">
         <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
-          <div className="w-3 h-3 rounded bg-purple-600" /> Sedang dikerjakan
+          <div className="w-3 h-3 rounded bg-primary-600" /> Sedang dikerjakan
         </div>
         <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
-          <div className="w-3 h-3 rounded bg-purple-100 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800" />{" "}
+          <div className="w-3 h-3 rounded bg-primary-100 dark:bg-primary-900/30 border border-primary-200 dark:border-primary-800" />{" "}
           Sudah dijawab
         </div>
         <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">

@@ -77,7 +77,7 @@ export default function ExamForm({
           placeholder="Contoh: Ujian Matematika Semester 1"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200"
+          className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200"
           required
         />
       </div>
@@ -92,7 +92,7 @@ export default function ExamForm({
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={4}
-          className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200 resize-none"
+          className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200 resize-none"
         />
       </div>
 
@@ -109,14 +109,14 @@ export default function ExamForm({
               placeholder="MTK001"
               value={code}
               onChange={(e) => setCode(e.target.value.toUpperCase())}
-              className="flex-1 px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200 uppercase font-mono font-semibold tracking-wider"
+              className="flex-1 px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200 uppercase font-mono font-semibold tracking-wider"
               maxLength={10}
               required
             />
             <button
               type="button"
               onClick={generateCode}
-              className="px-4 py-3 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200 flex items-center gap-2"
+              className="px-4 py-3 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200 flex items-center gap-2 cursor-pointer"
               title="Generate kode acak"
             >
               <MdOutlineRefresh className="w-5 h-5" />
@@ -134,7 +134,7 @@ export default function ExamForm({
             min={1}
             value={duration}
             onChange={(e) => setDuration(Number(e.target.value))}
-            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200"
+            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200"
             required
           />
         </div>
@@ -151,7 +151,7 @@ export default function ExamForm({
             type="datetime-local"
             value={startTime}
             onChange={(e) => setStartTime(e.target.value)}
-            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200"
+            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200"
             required
           />
         </div>
@@ -165,14 +165,14 @@ export default function ExamForm({
             type="datetime-local"
             value={endTime}
             onChange={(e) => setEndTime(e.target.value)}
-            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all duration-200"
+            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-900 transition-all duration-200"
             required
           />
         </div>
       </div>
 
       {/* Status Ujian */}
-      <div className="flex items-center justify-between p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
+      <div className="flex items-center justify-between p-4 rounded-xl bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800">
         <div>
           <label className="block text-base font-semibold text-slate-800 dark:text-white">
             Status Ujian
@@ -186,8 +186,8 @@ export default function ExamForm({
         <button
           type="button"
           onClick={() => setIsActive(!isActive)}
-          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ${
-            isActive ? "bg-purple-600" : "bg-slate-300 dark:bg-slate-600"
+          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 cursor-pointer ${
+            isActive ? "bg-primary-600" : "bg-slate-300 dark:bg-slate-600"
           }`}
         >
           <span
@@ -201,7 +201,7 @@ export default function ExamForm({
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-full px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 active:bg-purple-800 transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
+        className="w-full px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 active:bg-primary-800 transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2 cursor-pointer"
       >
         <IoSaveOutline className="w-5 h-5" />
         {isEditMode ? "Simpan Perubahan" : "Buat Ujian"}

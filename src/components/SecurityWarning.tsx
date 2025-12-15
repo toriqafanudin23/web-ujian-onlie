@@ -67,7 +67,7 @@ export default function SecurityWarning({
         {onDismiss && (
           <button
             onClick={onDismiss}
-            className="text-slate-400 hover:text-slate-600 transition-colors"
+            className="text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
           >
             ✕
           </button>
@@ -86,8 +86,8 @@ export function FullscreenPrompt({ onEnter, onCancel }: FullscreenPromptProps) {
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998] flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
-        <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <IoShieldCheckmarkOutline className="w-8 h-8 text-purple-600" />
+        <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <IoShieldCheckmarkOutline className="w-8 h-8 text-primary-600" />
         </div>
         <h2 className="text-2xl font-bold text-slate-800 text-center mb-3">
           Mode Ujian Aman
@@ -100,13 +100,13 @@ export function FullscreenPrompt({ onEnter, onCancel }: FullscreenPromptProps) {
         <div className="space-y-3">
           <button
             onClick={onEnter}
-            className="w-full py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors shadow-lg"
+            className="w-full py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg cursor-pointer"
           >
             Masuk Mode Layar Penuh
           </button>
           <button
             onClick={onCancel}
-            className="w-full py-3 border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors"
+            className="w-full py-3 border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
           >
             Batalkan
           </button>

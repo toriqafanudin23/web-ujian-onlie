@@ -336,13 +336,13 @@ export default function StudentExam() {
           <div className="flex justify-end gap-3">
             <button
               onClick={() => setSubmitModalOpen(false)}
-              className="px-4 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors"
+              className="px-4 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors cursor-pointer"
             >
               Lanjutkan Mengerjakan
             </button>
             <button
               onClick={() => handleSubmit(false)} // Pass false to indicate this is confirmed manual submit
-              className="px-4 py-2 bg-purple-600 text-white hover:bg-purple-700 rounded-lg font-medium transition-colors"
+              className="px-4 py-2 bg-primary-600 text-white hover:bg-primary-700 rounded-lg font-medium transition-colors cursor-pointer"
             >
               Ya, Selesaikan
             </button>

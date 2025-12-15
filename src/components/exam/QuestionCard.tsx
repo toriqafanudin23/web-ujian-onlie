@@ -60,8 +60,8 @@ export default function QuestionCard({
               key={option.id}
               className={`flex items-start p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
                 answer === option.id
-                  ? "border-purple-600 bg-purple-50 dark:bg-purple-900/20"
-                  : "border-slate-200 dark:border-slate-700 hover:border-purple-200 dark:hover:border-purple-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                  ? "border-primary-600 bg-primary-50 dark:bg-primary-900/20"
+                  : "border-slate-200 dark:border-slate-700 hover:border-primary-200 dark:hover:border-primary-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/50"
               }`}
             >
               <input
@@ -74,12 +74,12 @@ export default function QuestionCard({
               <div
                 className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center shrink-0 ${
                   answer === option.id
-                    ? "border-purple-600"
+                    ? "border-primary-600"
                     : "border-slate-300 dark:border-slate-600"
                 }`}
               >
                 {answer === option.id && (
-                  <div className="w-3 h-3 rounded-full bg-purple-600" />
+                  <div className="w-3 h-3 rounded-full bg-primary-600" />
                 )}
               </div>
               <span className="text-slate-700 dark:text-slate-300 font-medium">
@@ -94,7 +94,7 @@ export default function QuestionCard({
             <input
               type="text"
               placeholder="Ketik jawaban Anda di sini..."
-              className="w-full p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:border-purple-600 focus:outline-none transition-colors"
+              className="w-full p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:border-primary-600 focus:outline-none transition-colors"
               value={answer || ""}
               onChange={(e) => onAnswer(e.target.value)}
             />
@@ -110,7 +110,7 @@ export default function QuestionCard({
             {question.type === "essay" && (
               <textarea
                 placeholder="Ketik jawaban Anda di sini..."
-                className="w-full p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:border-purple-600 focus:outline-none transition-colors min-h-[200px]"
+                className="w-full p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:border-primary-600 focus:outline-none transition-colors min-h-[200px]"
                 value={answer?.startsWith("data:") ? "" : answer || ""}
                 onChange={(e) => onAnswer(e.target.value)}
               />
@@ -119,9 +119,9 @@ export default function QuestionCard({
             <div className="border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl p-6">
               <div className="text-center space-y-3">
                 <div className="flex justify-center">
-                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
                     <svg
-                      className="w-6 h-6 text-purple-600 dark:text-purple-400"
+                      className="w-6 h-6 text-primary-600 dark:text-primary-400"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -150,7 +150,7 @@ export default function QuestionCard({
                     onChange={onPhotoUpload}
                     className="hidden"
                   />
-                  <span className="px-4 py-2 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors cursor-pointer inline-block">
+                  <span className="px-4 py-2 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors cursor-pointer inline-block">
                     Pilih File
                   </span>
                 </label>
@@ -185,7 +185,7 @@ export default function QuestionCard({
         <button
           onClick={onPrev}
           disabled={questionIndex === 0}
-          className="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-slate-600 dark:text-slate-400 disabled:opacity-50 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+          className="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-slate-600 dark:text-slate-400 disabled:opacity-50 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer"
         >
           <IoArrowBack /> Sebelumnya
         </button>
@@ -193,7 +193,7 @@ export default function QuestionCard({
           <button
             onClick={() => onSubmit(false)}
             disabled={isSaving}
-            className="flex items-center gap-2 px-8 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50"
+            className="flex items-center gap-2 px-8 py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50 cursor-pointer"
           >
             {isSaving ? (
               "Menyimpan..."
@@ -206,7 +206,7 @@ export default function QuestionCard({
         ) : (
           <button
             onClick={onNext}
-            className="flex items-center gap-2 px-6 py-3 bg-slate-800 dark:bg-slate-700 text-white rounded-lg font-semibold hover:bg-slate-900 dark:hover:bg-slate-600 transition-colors"
+            className="flex items-center gap-2 px-6 py-3 bg-slate-800 dark:bg-slate-700 text-white rounded-lg font-semibold hover:bg-slate-900 dark:hover:bg-slate-600 transition-colors cursor-pointer"
           >
             Selanjutnya <IoArrowForward />
           </button>

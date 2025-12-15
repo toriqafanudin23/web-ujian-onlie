@@ -33,7 +33,7 @@ export default function ExamResultSummary({
             <span className="text-slate-600 dark:text-slate-400">
               Nilai Anda
             </span>
-            <span className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+            <span className="text-2xl font-bold text-primary-600 dark:text-primary-400">
               {score}
             </span>
           </div>
@@ -47,7 +47,7 @@ export default function ExamResultSummary({
 
         <button
           onClick={onHome}
-          className="w-full py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+          className="w-full py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors cursor-pointer"
         >
           Kembali ke Beranda
         </button>

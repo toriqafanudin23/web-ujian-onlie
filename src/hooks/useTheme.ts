@@ -1,21 +1,31 @@
 import { useState, useEffect } from "react";
+import { colorPalettes, type ColorPalette } from "../utils/colors";
 
-type Theme = "light" | "dark";
-
-export function useTheme() {
-  const [theme, setTheme] = useState<Theme>(() => {
+export default function useTheme() {
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
     if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme") as Theme;
-      if (savedTheme) {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light" || savedTheme === "dark") {
         return savedTheme;
-      }
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
       }
     }
     return "light";
   });
 
+  const [colorPalette, setColorPalette] = useState<ColorPalette>(() => {
+    if (typeof window !== "undefined") {
+      const savedPalette = localStorage.getItem("colorPalette");
+      if (
+        savedPalette &&
+        Object.keys(colorPalettes).includes(savedPalette as ColorPalette)
+      ) {
+        return savedPalette as ColorPalette;
+      }
+    }
+    return "purple";
+  });
+
+  // Handle Theme (Light/Dark)
   useEffect(() => {
     const root = window.document.documentElement;
     if (theme === "dark") {
@@ -26,9 +36,26 @@ export function useTheme() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  // Handle Color Palette
+  useEffect(() => {
+    const root = window.document.documentElement;
+    const palette = colorPalettes[colorPalette];
+
+    // Update CSS variables
+    Object.entries(palette).forEach(([shade, value]) => {
+      root.style.setProperty(`--color-primary-${shade}`, value);
+    });
+
+    localStorage.setItem("colorPalette", colorPalette);
+  }, [colorPalette]);
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  return { theme, toggleTheme };
+  const changePalette = (palette: ColorPalette) => {
+    setColorPalette(palette);
+  };
+
+  return { theme, toggleTheme, colorPalette, changePalette };
 }

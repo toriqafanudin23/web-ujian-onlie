@@ -14,7 +14,7 @@ export default function ExamHeader({ title, timeLeft }: ExamHeaderProps) {
             {title}
           </h1>
         </div>
-        <div className="flex items-center gap-2 px-4 py-2 bg-purple-50 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 rounded-lg font-mono font-bold">
+        <div className="flex items-center gap-2 px-4 py-2 bg-primary-50 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 rounded-lg font-mono font-bold">
           <PiTimerBold className="w-5 h-5" />
           {timeLeft}
         </div>

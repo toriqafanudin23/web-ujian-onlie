@@ -127,14 +127,14 @@ export default function GradeSubmission() {
       <header className="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
               <PiGraduationCapBold className="w-6 h-6 text-white" />
             </div>
             <div className="flex items-center gap-2">
               <span className="text-xl font-bold text-slate-800 dark:text-white">
                 ExamPro
               </span>
-              <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-md">
+              <span className="px-2 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-xs font-semibold rounded-md">
                 Admin
               </span>
             </div>
@@ -143,7 +143,7 @@ export default function GradeSubmission() {
             <ThemeToggle />
             <Link
               to={`/admin/ujian/${examId}/hasil`}
-              className="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200"
+              className="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200 cursor-pointer"
             >
               <IoArrowBack className="w-4 h-4" />
               <span className="hidden sm:inline font-medium">Kembali</span>
@@ -186,11 +186,11 @@ export default function GradeSubmission() {
               </div>
             </div>
             <div className="text-right">
-              <div className="inline-block bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-xl px-6 py-4">
-                <div className="text-sm font-semibold text-purple-700 dark:text-purple-300 mb-1">
+              <div className="inline-block bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-xl px-6 py-4">
+                <div className="text-sm font-semibold text-primary-700 dark:text-primary-300 mb-1">
                   Nilai Saat Ini
                 </div>
-                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
+                <div className="text-3xl font-bold text-primary-600 dark:text-primary-400">
                   {finalScore} / {maxScore}
                 </div>
               </div>
@@ -297,7 +297,7 @@ export default function GradeSubmission() {
               >
                 {/* Question Header */}
                 <div className="flex items-start gap-3 mb-4">
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 font-bold shrink-0">
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 font-bold shrink-0">
                     {index + 1}
                   </span>
                   <div className="flex-1">
@@ -399,7 +399,7 @@ export default function GradeSubmission() {
                 {/* Manual Grading Input */}
                 {isManualGrade && (
                   <div className="mt-4 space-y-4">
-                    <div className="p-4 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-xl">
+                    <div className="p-4 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-xl">
                       <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                         Nilai Manual (Max: {question.points})
                       </label>
@@ -412,7 +412,7 @@ export default function GradeSubmission() {
                         onChange={(e) =>
                           handleGradeChange(question.id, e.target.value)
                         }
-                        className="w-full sm:w-40 px-4 py-2 bg-white dark:bg-slate-800 border border-purple-300 dark:border-purple-700 text-slate-800 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                        className="w-full sm:w-40 px-4 py-2 bg-white dark:bg-slate-800 border border-primary-300 dark:border-primary-700 text-slate-800 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600"
                       />
                     </div>
                     <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl">
@@ -443,14 +443,14 @@ export default function GradeSubmission() {
         <div className="flex justify-end gap-3 pt-6 border-t border-slate-200 dark:border-slate-800">
           <Link
             to={`/admin/ujian/${examId}/hasil`}
-            className="px-6 py-3 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+            className="px-6 py-3 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
           >
             Kembali ke Daftar Hasil
           </Link>
           <button
             onClick={handleSave}
             disabled={saving}
-            className="flex items-center gap-2 px-8 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50"
+            className="flex items-center gap-2 px-8 py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50 cursor-pointer"
           >
             {saving ? (
               "Menyimpan..."

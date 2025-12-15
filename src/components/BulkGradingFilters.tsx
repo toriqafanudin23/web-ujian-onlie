@@ -53,12 +53,12 @@ export default function BulkGradingFilters({
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
               <PiGraduationCapBold className="w-6 h-6 text-white" />
             </div>
             <div className="flex items-center gap-2">
               <span className="text-xl font-bold text-slate-800">ExamPro</span>
-              <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-md">
+              <span className="px-2 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-md">
                 Bulk Grading
               </span>
             </div>
@@ -86,7 +86,7 @@ export default function BulkGradingFilters({
                 onChange={(e) =>
                   handleFilterUpdate({ searchTerm: e.target.value })
                 }
-                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent"
               />
             </div>
 
@@ -96,7 +96,7 @@ export default function BulkGradingFilters({
               <select
                 value={status}
                 onChange={(e) => handleFilterUpdate({ status: e.target.value })}
-                className="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 bg-white"
+                className="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 bg-white"
               >
                 <option value="all">Semua Status</option>
                 <option value="pending_review">Pending Review</option>
@@ -112,7 +112,7 @@ export default function BulkGradingFilters({
                 onChange={(e) =>
                   handleFilterUpdate({ questionType: e.target.value })
                 }
-                className="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 bg-white"
+                className="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 bg-white"
               >
                 <option value="all">Semua Tipe</option>
                 <option value="essay">Essay</option>
@@ -127,7 +127,7 @@ export default function BulkGradingFilters({
               <select
                 value={sortBy}
                 onChange={(e) => handleFilterUpdate({ sortBy: e.target.value })}
-                className="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 bg-white"
+                className="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 bg-white"
               >
                 <option value="pending_first">Pending Dulu</option>
                 <option value="name_asc">Nama A-Z</option>
@@ -149,13 +149,13 @@ export default function BulkGradingFilters({
                   sortBy: "time_asc",
                 })
               }
-              className="px-3 py-1.5 text-sm bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors font-medium"
+              className="px-3 py-1.5 text-sm bg-primary-50 text-primary-700 rounded-lg hover:bg-primary-100 transition-colors font-medium cursor-pointer"
             >
               ⏳ Lihat Pending
             </button>
             <button
               onClick={() => handleFilterUpdate({ questionType: "essay" })}
-              className="px-3 py-1.5 text-sm bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors font-medium"
+              className="px-3 py-1.5 text-sm bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors font-medium cursor-pointer"
             >
               📝 Essay Saja
             </button>
@@ -163,7 +163,7 @@ export default function BulkGradingFilters({
               onClick={() =>
                 handleFilterUpdate({ questionType: "photo_upload" })
               }
-              className="px-3 py-1.5 text-sm bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors font-medium"
+              className="px-3 py-1.5 text-sm bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors font-medium cursor-pointer"
             >
               📷 Photo Saja
             </button>

@@ -60,14 +60,14 @@ export default function EditExam() {
       <header className="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
               <PiGraduationCapBold className="w-6 h-6 text-white" />
             </div>
             <div className="flex items-center gap-2">
               <span className="text-xl font-bold text-slate-800 dark:text-white">
                 ExamPro
               </span>
-              <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-md">
+              <span className="px-2 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-xs font-semibold rounded-md">
                 Admin
               </span>
             </div>
@@ -76,7 +76,7 @@ export default function EditExam() {
             <ThemeToggle />
             <Link
               to="/admin"
-              className="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200"
+              className="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200 cursor-pointer"
             >
               <IoArrowBack className="w-4 h-4" />
               <span className="hidden sm:inline font-medium">Kembali</span>
@@ -89,7 +89,7 @@ export default function EditExam() {
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm">
           {/* Card Header */}
-          <div className="border-b border-slate-200 dark:border-slate-800 bg-purple-50 dark:bg-purple-900/20 px-6 py-4 rounded-t-2xl">
+          <div className="border-b border-slate-200 dark:border-slate-800 bg-primary-50 dark:bg-primary-900/20 px-6 py-4 rounded-t-2xl">
             <h1 className="text-2xl font-bold text-slate-800 dark:text-white">
               Edit Ujian
             </h1>
