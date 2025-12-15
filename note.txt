@@ -1,0 +1,671 @@
+# API Endpoints & Database Schema Documentation
+
+## 📋 API Endpoints
+
+### Exams (Ujian)
+
+#### GET /exams
+Mengambil semua data ujian
+```
+Response: 200 OK
+[
+  {
+    "id": "1",
+    "title": "Ujian Matematika Semester 1",
+    "description": "Ujian akhir semester untuk mata pelajaran Matematika kelas 10",
+    "code": "MTK001",
+    "duration": 90,
+    "startTime": "2024-01-15T08:00:00",
+    "endTime": "2024-01-15T10:00:00",
+    "isActive": true,
+    "createdAt": "2024-01-10T10:00:00"
+  }
+]
+```
+
+#### GET /exams/:id
+Mengambil detail ujian berdasarkan ID
+```
+Response: 200 OK
+{
+  "id": "1",
+  "title": "Ujian Matematika Semester 1",
+  "description": "...",
+  "code": "MTK001",
+  "duration": 90,
+  "startTime": "2024-01-15T08:00:00",
+  "endTime": "2024-01-15T10:00:00",
+  "isActive": true,
+  "createdAt": "2024-01-10T10:00:00"
+}
+```
+
+#### GET /exams?code={code}
+Mengambil ujian berdasarkan kode ujian (untuk student join)
+```
+Query Params: code=MTK001
+
+Response: 200 OK
+[
+  {
+    "id": "1",
+    "title": "Ujian Matematika Semester 1",
+    ...
+  }
+]
+```
+
+#### POST /exams
+Membuat ujian baru
+```
+Request Body:
+{
+  "title": "Ujian Matematika Semester 1",
+  "description": "Ujian akhir semester untuk mata pelajaran Matematika kelas 10",
+  "code": "MTK001",
+  "duration": 90,
+  "startTime": "2024-01-15T08:00:00",
+  "endTime": "2024-01-15T10:00:00",
+  "isActive": true
+}
+
+Response: 201 Created
+{
+  "id": "generated-uuid",
+  "title": "Ujian Matematika Semester 1",
+  "description": "...",
+  "code": "MTK001",
+  "duration": 90,
+  "startTime": "2024-01-15T08:00:00",
+  "endTime": "2024-01-15T10:00:00",
+  "isActive": true,
+  "createdAt": "2024-01-10T10:00:00Z"
+}
+```
+
+#### PUT /exams/:id
+Memperbarui data ujian
+```
+Request Body:
+{
+  "title": "Ujian Matematika Semester 1 (Updated)",
+  "description": "Deskripsi yang diperbarui",
+  "code": "MTK001",
+  "duration": 120,
+  "startTime": "2024-01-15T08:00:00",
+  "endTime": "2024-01-15T10:00:00",
+  "isActive": false
+}
+
+Response: 200 OK
+{
+  "id": "1",
+  "title": "Ujian Matematika Semester 1 (Updated)",
+  ...
+}
+```
+
+#### DELETE /exams/:id
+Menghapus ujian
+```
+Response: 200 OK
+{}
+```
+
+---
+
+### Questions (Soal)
+
+#### GET /questions?examId={examId}
+Mengambil semua soal untuk ujian tertentu
+```
+Query Params: examId=1
+
+Response: 200 OK
+[
+  {
+    "id": "q1",
+    "examId": "1",
+    "type": "multiple_choice",
+    "text": "Berapakah hasil dari 2 + 2?",
+    "points": 10,
+    "imageUrl": "https://example.com/image.png", // optional
+    "options": [
+      {
+        "id": "a",
+        "text": "3",
+        "isCorrect": false
+      },
+      {
+        "id": "b",
+        "text": "4",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": "q2",
+    "examId": "1",
+    "type": "short_answer",
+    "text": "Sebutkan rumus luas lingkaran",
+    "points": 15,
+    "correctAnswer": "πr²"
+  }
+]
+```
+
+#### GET /questions/:id
+Mengambil detail soal berdasarkan ID
+```
+Response: 200 OK
+{
+  "id": "q1",
+  "examId": "1",
+  "type": "multiple_choice",
+  "text": "Berapakah hasil dari 2 + 2?",
+  "points": 10,
+  "options": [...]
+}
+```
+
+#### POST /questions
+Membuat soal baru
+```
+Request Body (Multiple Choice):
+{
+  "examId": "1",
+  "type": "multiple_choice",
+  "text": "Berapakah hasil dari 2 + 2?",
+  "points": 10,
+  "imageUrl": "https://example.com/image.png", // optional
+  "options": [
+    {
+      "id": "a",
+      "text": "3",
+      "isCorrect": false
+    },
+    {
+      "id": "b",
+      "text": "4",
+      "isCorrect": true
+    },
+    {
+      "id": "c",
+      "text": "5",
+      "isCorrect": false
+    }
+  ]
+}
+
+Request Body (Short Answer):
+{
+  "examId": "1",
+  "type": "short_answer",
+  "text": "Sebutkan rumus luas lingkaran",
+  "points": 15,
+  "correctAnswer": "πr²"
+}
+
+Request Body (Essay):
+{
+  "examId": "1",
+  "type": "essay",
+  "text": "Jelaskan konsep aljabar linear",
+  "points": 20
+}
+
+Response: 201 Created
+{
+  "id": "generated-uuid",
+  "examId": "1",
+  "type": "multiple_choice",
+  ...
+}
+```
+
+#### PUT /questions/:id
+Memperbarui soal
+```
+Request Body:
+{
+  "examId": "1",
+  "type": "multiple_choice",
+  "text": "Updated question text",
+  "points": 15,
+  "imageUrl": "https://example.com/new-image.png",
+  "options": [...]
+}
+
+Response: 200 OK
+{
+  "id": "q1",
+  ...
+}
+```
+
+#### DELETE /questions/:id
+Menghapus soal
+```
+Response: 200 OK
+{}
+```
+
+---
+
+### Results (Hasil Ujian)
+
+#### GET /results?examId={examId}
+Mengambil semua hasil ujian untuk ujian tertentu
+```
+Query Params: examId=1
+
+Response: 200 OK
+[
+  {
+    "id": "r1",
+    "examId": "1",
+    "studentName": "John Doe",
+    "score": 85,
+    "correctCount": 8,
+    "totalQuestions": 10,
+    "answers": {
+      "q1": "b",
+      "q2": "πr²",
+      "q3": "a"
+    },
+    "submittedAt": "2024-01-15T09:30:00Z"
+  }
+]
+```
+
+#### GET /results/:id
+Mengambil detail hasil ujian berdasarkan ID
+```
+Response: 200 OK
+{
+  "id": "r1",
+  "examId": "1",
+  "studentName": "John Doe",
+  "score": 85,
+  ...
+}
+```
+
+#### POST /results
+Menyimpan hasil ujian siswa
+```
+Request Body:
+{
+  "examId": "1",
+  "studentName": "John Doe",
+  "score": 85,
+  "correctCount": 8,
+  "totalQuestions": 10,
+  "answers": {
+    "q1": "b",
+    "q2": "πr²"
+  }
+}
+
+Response: 201 Created
+{
+  "id": "generated-uuid",
+  "examId": "1",
+  "studentName": "John Doe",
+  "score": 85,
+  "correctCount": 8,
+  "totalQuestions": 10,
+  "answers": {...},
+  "submittedAt": "2024-01-15T09:30:00Z"
+}
+```
+
+#### PATCH /results/:id
+Memperbarui nilai manual untuk hasil ujian (untuk admin grading)
+```
+Request Body:
+{
+  "manualGrades": {
+    "q1": 10,
+    "q2": 15
+  },
+  "score": 95,
+  "gradingStatus": "graded"
+}
+
+Response: 200 OK
+{
+  "id": "r1",
+  "examId": "1",
+  "studentName": "John Doe",
+  "score": 95,
+  "manualGrades": {"q1": 10, "q2": 15},
+  "gradingStatus": "graded",
+  ...
+}
+```
+
+#### DELETE /results/:id
+Menghapus hasil ujian siswa (menghapus peserta ujian)
+```
+Response: 200 OK
+{}
+```
+
+---
+
+## 🗄️ Prisma Schema
+
+```prisma
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // or "mysql", "sqlite", etc.
+  url      = env("DATABASE_URL")
+}
+
+// Model Ujian
+model Exam {
+  id          String     @id @default(uuid())
+  title       String
+  description String     @db.Text
+  code        String     @unique
+  duration    Int        // dalam menit
+  startTime   DateTime
+  endTime     DateTime
+  isActive    Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  
+  // Relations
+  questions   Question[]
+  results     Result[]
+  
+  @@index([code])
+  @@index([isActive])
+  @@map("exams")
+}
+
+// Model Soal
+model Question {
+  id            String       @id @default(uuid())
+  examId        String
+  type          QuestionType
+  text          String       @db.Text
+  imageUrl      String?
+  points        Int
+  correctAnswer String?      // untuk short_answer
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  
+  // Relations
+  exam          Exam         @relation(fields: [examId], references: [id], onDelete: Cascade)
+  options       Option[]
+  
+  @@index([examId])
+  @@map("questions")
+}
+
+// Model Pilihan Jawaban (untuk multiple choice)
+model Option {
+  id         String   @id @default(uuid())
+  questionId String
+  text       String   @db.Text
+  isCorrect  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  
+  // Relations
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  
+  @@index([questionId])
+  @@map("options")
+}
+
+// Model Hasil Ujian
+model Result {
+  id             String   @id @default(uuid())
+  examId         String
+  studentName    String
+  score          Int
+  correctCount   Int
+  totalQuestions Int
+  answers        Json     // menyimpan { questionId: answer (text or base64 photo) }
+  manualGrades   Json?    // menyimpan { questionId: manual score }
+  gradingStatus  String   @default("auto_graded") // auto_graded, pending_review, graded
+  submittedAt    DateTime @default(now())
+  
+  // Relations
+  exam           Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+  
+  @@index([examId])
+  @@index([submittedAt])
+  @@map("results")
+}
+
+// Enum untuk tipe soal
+enum QuestionType {
+  multiple_choice
+  short_answer
+  essay
+  photo_upload
+}
+```
+
+---
+
+## 📊 Entity Relationship Diagram (ERD)
+
+```
+┌─────────────────────────────────────────┐
+│              EXAM (exams)               │
+├─────────────────────────────────────────┤
+│ PK  id          : UUID                  │
+│     title       : String                │
+│     description : Text                  │
+│ UK  code        : String (unique)       │
+│     duration    : Integer (minutes)     │
+│     startTime   : DateTime              │
+│     endTime     : DateTime              │
+│     isActive    : Boolean               │
+│     createdAt   : DateTime              │
+│     updatedAt   : DateTime              │
+└─────────────────────────────────────────┘
+           │                    │
+           │ 1                  │ 1
+           │                    │
+           │ *                  │ *
+           ▼                    ▼
+┌──────────────────────┐  ┌──────────────────────┐
+│ QUESTION (questions) │  │  RESULT (results)    │
+├──────────────────────┤  ├──────────────────────┤
+│ PK  id         : UUID│  │ PK  id         : UUID│
+│ FK  examId     : UUID│  │ FK  examId     : UUID│
+│     type       : Enum│  │     studentName: Text│
+│     text       : Text│  │     score      : Int │
+│     imageUrl   : Text│  │     correctCount:Int │
+│     points     : Int │  │     totalQuestions:Int│
+│     correctAns : Text│  │     answers    : JSON│
+│     createdAt  : DT  │  │     submittedAt: DT  │
+│     updatedAt  : DT  │  └──────────────────────┘
+└──────────────────────┘
+           │
+           │ 1
+           │
+           │ *
+           ▼
+┌──────────────────────┐
+│  OPTION (options)    │
+├──────────────────────┤
+│ PK  id         : UUID│
+│ FK  questionId : UUID│
+│     text       : Text│
+│     isCorrect  : Bool│
+│     createdAt  : DT  │
+└──────────────────────┘
+
+RELATIONSHIPS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Exam → Question (1:N)
+   - One Exam has many Questions
+   - CASCADE delete: hapus exam = hapus semua soal
+
+2. Exam → Result (1:N)
+   - One Exam has many Results (submissions)
+   - CASCADE delete: hapus exam = hapus semua hasil
+
+3. Question → Option (1:N)
+   - One Question has many Options (untuk multiple choice)
+   - CASCADE delete: hapus question = hapus semua options
+   - Optional: hanya untuk type = "multiple_choice"
+
+INDEXES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- exams.code (UNIQUE) - untuk search by exam code
+- exams.isActive - untuk filter active exams
+- questions.examId - untuk get questions by exam
+- options.questionId - untuk get options by question
+- results.examId - untuk get results by exam
+- results.submittedAt - untuk sort by submission time
+
+CONSTRAINTS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- exam.code: UNIQUE (tidak boleh duplikat)
+- question.type: ENUM (multiple_choice, short_answer, essay, photo_upload)
+- option.isCorrect: hanya 1 yang true per question
+- result.answers: JSON object { questionId: answer }
+```
+
+---
+
+## 📝 Notes
+
+### Question Types:
+1. **multiple_choice**: Pilihan ganda dengan options[]
+2. **short_answer**: Jawaban singkat dengan correctAnswer (auto-grading)
+3. **essay**: Jawaban panjang (manual grading required)
+4. **photo_upload**: Upload foto (manual grading required)
+
+### LaTeX Support:
+- **Question Display**: Semua tipe soal mendukung LaTeX dalam field `text`
+- **Student Input**: Siswa dapat menulis jawaban dengan syntax LaTeX untuk:
+  - Short Answer: Input field dengan live preview LaTeX
+  - Essay: Textarea dengan live preview LaTeX
+  - Contoh syntax: `$x^2$`, `$\frac{a}{b}$`, `$\lim_{x \to 0}$`
+- **Admin View**: LaTeX di-render saat admin melakukan grading
+
+### Grading System:
+1. **Auto-grading**: 
+   - Multiple choice: otomatis saat submit
+   - Short answer: otomatis jika jawaban exact match dengan `correctAnswer`
+2. **Manual grading**:
+   - Essay dan photo_upload selalu manual
+   - Admin dapat memberikan `manualGrades` (score per question)
+   - Admin dapat memberikan `feedback` (feedback text per question)
+   
+### Result Fields (ExamResult):
+```typescript
+{
+  id: string,
+  examId: string,
+  studentName: string,
+  score: number,              // Final calculated score
+  correctCount: number,       // Number of correct answers
+  totalQuestions: number,
+  answers: Record<string, string>,  // { questionId: answer (text or base64) }
+  gradingStatus: "pending_review" | "graded" | "auto_graded",
+  submittedAt: string,        // ISO DateTime
+  manualGrades?: Record<string, number>,  // { questionId: score }
+  feedback?: Record<string, string>,      // { questionId: feedbackText }
+  gradedBy?: string,          // Admin name who graded
+  gradedAt?: string,          // ISO DateTime when graded
+  
+  // Security/Proctoring fields (IMPLEMENTED via useExamSecurity hook)
+  proctoringData?: {
+    ipAddress?: string,
+    deviceFingerprint?: string,
+    browserInfo?: string,
+    fullscreenViolations?: number,      // Jumlah keluar dari fullscreen
+    tabSwitchViolations?: number,       // Jumlah pindah tab
+    copyPasteViolations?: number        // Jumlah copy/paste attempts
+  },
+  activityLog?: Array<{
+    action: string,                      // Tipe aktivitas (lihat Activity Log Types)
+    timestamp: string,                   // ISO DateTime
+    metadata?: any                       // Data tambahan
+  }>,
+  violationCount?: number,               // Total violations detected
+  flaggedForReview?: boolean             // Auto-flag jika violations > maxViolations
+}
+```
+
+### Activity Log Types (useExamSecurity):
+```
+FULLSCREEN:
+- "fullscreen_entered"     : Siswa masuk fullscreen
+- "fullscreen_exited"      : Manual exit fullscreen by user
+- "fullscreen_failed"      : Gagal masuk fullscreen
+- "violation_fullscreen_exit" : Violation detected - exit fullscreen
+
+TAB/WINDOW:
+- "violation_tab_switch"   : Violation detected - pindah tab/window
+
+COPY/PASTE:
+- "copy_attempt"           : Siswa mencoba copy
+- "paste_detected"         : Siswa paste text (metadata: { length })
+- "violation_copy_paste"   : Violation detected - paste
+
+SYSTEM:
+- "max_violations_reached" : Mencapai batas maksimal violations (metadata: { count })
+- "right_click_attempt"    : Siswa klik kanan (disabled)
+```
+
+### Fullscreen Monitoring (ACTIVE):
+- **Auto-enter fullscreen**: Saat ujian dimulai, window otomatis masuk fullscreen
+- **Violation detection**: Jika siswa keluar dari fullscreen (Esc), tercatat sebagai violation
+- **Auto-exit**: Fullscreen otomatis keluar saat ujian selesai/submit
+- **Max violations**: Default 5 violations sebelum flagged for review
+
+### Data Validation:
+- Exam code harus unique
+- Duration dalam menit (integer)
+- startTime < endTime
+- Points harus > 0
+- Multiple choice harus punya minimal 2 options dan 1 correct answer
+- Short answer harus punya correctAnswer untuk auto-grading
+- StudentName harus valid (tidak boleh kosong atau random)
+- LaTeX syntax dalam jawaban harus valid untuk di-render
+
+### Photo Upload:
+- Format yang diterima: JPG, PNG, PDF
+- Max size: 5MB
+- Disimpan sebagai base64 string dalam answers
+- Format: `data:image/jpeg;base64,...` atau `data:application/pdf;base64,...`
+
+### Migration dari JSON Server ke Database:
+1. Install Prisma: `npm install @prisma/client`
+2. Install Prisma CLI: `npm install -D prisma`
+3. Initialize Prisma: `npx prisma init`
+4. Copy schema di atas ke `prisma/schema.prisma`
+5. Setup DATABASE_URL di `.env`
+6. Run migration: `npx prisma migrate dev --name init`
+7. Generate client: `npx prisma generate`
+8. Update `src/services/api.ts` untuk menggunakan Prisma Client
+
+### API Response Codes:
+- 200 OK: Success (GET, PUT, DELETE)
+- 201 Created: Success (POST)
+- 400 Bad Request: Validation error
+- 404 Not Found: Resource tidak ditemukan
+- 500 Internal Server Error: Server error
+
+### Important Backend Considerations:
+1. **LaTeX Rendering**: Backend tidak perlu render LaTeX, frontend yang handle
+2. **Base64 Images**: Perhatikan size limit untuk field `answers` di database
+3. **JSON Fields**: `answers`, `manualGrades`, `feedback` sebaiknya JSON type di DB
+4. **Indexing**: Tambahkan index pada `studentName`, `gradingStatus` untuk query cepat
+5. **Validation**: Validate student name format (minimal 3 karakter, tidak boleh special chars)
