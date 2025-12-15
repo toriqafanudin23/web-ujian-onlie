@@ -1,0 +1,281 @@
+
+# Entity Relationship Diagram (ERD)
+
+```mermaid
+erDiagram
+    Exam ||--o{ Question : "contains"
+    Exam ||--o{ ExamResult : "has results"
+    Question ||--o{ QuestionOption : "has options"
+    Question ||--o{ GradingRubric : "has rubric"
+    GradingRubric ||--o{ GradingCriteria : "has"
+    GradingRubric ||--o{ GradeTemplate : "has"
+    QuestionBank ||--o{ QuestionOption : "has options"
+    QuestionBank ||--o{ Question : "copied to"
+    ExamResult ||--o{ StudentAnswer : "contains"
+    
+    Exam {
+        string id PK
+        string title
+        string description
+        string code
+        int duration
+        datetime startTime
+        datetime endTime
+        boolean isActive
+        json securitySettings
+        json gradingSettings
+    }
+
+    Question {
+        string id PK
+        string examId FK
+        string type
+        string text
+        int points
+        string imageUrl
+        string correctAnswer
+        string sampleAnswer
+        string[] keywords
+        string difficulty
+        string[] tags
+        string questionBankId FK
+        boolean isFromBank
+    }
+
+    QuestionOption {
+        string id PK
+        string questionId FK
+        string questionBankId FK
+        string text
+        boolean isCorrect
+    }
+
+    QuestionBank {
+        string id PK
+        string type
+        string text
+        string subject
+        string topic
+        string difficulty
+        string[] tags
+        int points
+        string imageUrl
+        string correctAnswer
+        string createdBy
+        datetime createdAt
+        int usageCount
+        boolean isPublic
+    }
+
+    ExamResult {
+        string id PK
+        string examId FK
+        string studentName
+        float score
+        int correctCount
+        int totalQuestions
+        string gradingStatus
+        datetime submittedAt
+        json proctoringData
+        json activityLog
+    }
+
+    StudentAnswer {
+        string id PK
+        string examResultId FK
+        string questionId FK
+        string answer
+        float manualGrade
+        string feedback
+        string gradingStatus
+    }
+```
+
+# Prisma Schema (schema.prisma)
+
+```prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  SHORT_ANSWER
+  ESSAY
+  PHOTO_UPLOAD
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum GradingStatus {
+  AUTO_GRADED
+  PENDING_REVIEW
+  GRADED
+}
+
+model Exam {
+  id          String   @id @default(uuid())
+  title       String
+  description String   @db.Text
+  code        String   @unique
+  duration    Int      // in minutes
+  startTime   DateTime
+  endTime     DateTime
+  isActive    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Settings stored as JSON for flexibility
+  securitySettings Json? // { requireFullscreen, enableProctoring, ... }
+  gradingSettings  Json? // { autoReleaseGrades, requireReview, ... }
+
+  questions   Question[]
+  results     ExamResult[]
+
+  @@map("exams")
+}
+
+model Question {
+  id            String       @id @default(uuid())
+  examId        String
+  type          QuestionType
+  text          String       @db.Text
+  points        Int          @default(0)
+  imageUrl      String?
+  correctAnswer String?      @db.Text // For Short Answer
+  sampleAnswer  String?      @db.Text // For Essay reference
+  keywords      String[]     // For auto-grading help
+  difficulty    Difficulty?
+  tags          String[]
+  
+  // Reference to Question Bank source
+  questionBankId String?
+  isFromBank     Boolean      @default(false)
+
+  exam          Exam         @relation(fields: [examId], references: [id], onDelete: Cascade)
+  sourceBank    QuestionBank? @relation(fields: [questionBankId], references: [id])
+  
+  options       QuestionOption[]
+  rubric        GradingRubric?
+  studentAnswers StudentAnswer[]
+
+  @@map("questions")
+}
+
+model QuestionOption {
+  id             String        @id @default(uuid())
+  text           String
+  isCorrect      Boolean       @default(false)
+  
+  // Can belong to an Exam Question or a Bank Question
+  questionId     String?
+  question       Question?     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  
+  questionBankId String?
+  questionBank   QuestionBank? @relation(fields: [questionBankId], references: [id], onDelete: Cascade)
+
+  @@map("question_options")
+}
+
+model QuestionBank {
+  id            String       @id @default(uuid())
+  type          QuestionType
+  text          String       @db.Text
+  subject       String
+  topic         String
+  difficulty    Difficulty
+  tags          String[]
+  points        Int          @default(0)
+  imageUrl      String?
+  correctAnswer String?      @db.Text
+  
+  createdBy     String
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  usageCount    Int          @default(0)
+  isPublic      Boolean      @default(true)
+
+  options       QuestionOption[]
+  copies        Question[]   // Questions copied from this bank item
+
+  @@map("question_bank")
+}
+
+model GradingRubric {
+  id         String   @id @default(uuid())
+  questionId String   @unique
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  
+  criteria   GradingCriteria[]
+  templates  GradeTemplate[]
+
+  @@map("grading_rubrics")
+}
+
+model GradingCriteria {
+  id          String        @id @default(uuid())
+  rubricId    String
+  rubric      GradingRubric @relation(fields: [rubricId], references: [id], onDelete: Cascade)
+  name        String
+  maxPoints   Int
+  description String        @db.Text
+
+  @@map("grading_criteria")
+}
+
+model GradeTemplate {
+  id          String        @id @default(uuid())
+  rubricId    String
+  rubric      GradingRubric @relation(fields: [rubricId], references: [id], onDelete: Cascade)
+  label       String
+  percentage  Float
+  comment     String?
+
+  @@map("grade_templates")
+}
+
+model ExamResult {
+  id             String        @id @default(uuid())
+  examId         String
+  studentName    String
+  score          Float         @default(0)
+  correctCount   Int           @default(0)
+  totalQuestions Int
+  gradingStatus  GradingStatus @default(AUTO_GRADED)
+  submittedAt    DateTime      @default(now())
+  
+  // JSON fields for complex/nested data
+  proctoringData Json?         // { suspiciousActivities: [], webcamPhotos: [] }
+  activityLog    Json?         // Audit log of student actions
+  feedback       Json?         // General feedback
+
+  exam           Exam          @relation(fields: [examId], references: [id], onDelete: Cascade)
+  answers        StudentAnswer[]
+
+  @@map("exam_results")
+}
+
+model StudentAnswer {
+  id            String        @id @default(uuid())
+  examResultId  String
+  questionId    String
+  answer        String        @db.Text // Text answer or photo URL
+  
+  manualGrade   Float?        // Score given by grader
+  feedback      String?       @db.Text
+  
+  result        ExamResult    @relation(fields: [examResultId], references: [id], onDelete: Cascade)
+  question      Question      @relation(fields: [questionId], references: [id])
+
+  @@map("student_answers")
+}
+```

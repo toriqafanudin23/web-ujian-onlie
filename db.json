@@ -1,6 +1,17 @@
 {
   "exams": [
     {
+      "id": "6",
+      "title": "UTS Teori Bilangan",
+      "description": "Evaluasi pemahaman materi keterbagian, FPB, KPK, kekongruenan, dan bilangan prima.",
+      "code": "NUM001",
+      "duration": 90,
+      "startTime": "2024-03-01T08:00:00",
+      "endTime": "2024-03-01T12:00:00",
+      "isActive": true,
+      "createdAt": "2024-02-25T10:00:00"
+    },
+    {
       "id": "4",
       "title": "UTS Aljabar Linear",
       "description": "Evaluasi pemahaman materi matriks, vektor, dan sistem persamaan linear.",
@@ -24,6 +35,156 @@
     }
   ],
   "questions": [
+    {
+      "id": "num-1",
+      "examId": "6",
+      "type": "multiple_choice",
+      "text": "Berapakah Faktor Persekutuan Terbesar (FPB) dari 84 dan 126?",
+      "points": 20,
+      "difficulty": "easy",
+      "options": [
+        {
+          "id": "a",
+          "text": "14",
+          "isCorrect": false
+        },
+        {
+          "id": "b",
+          "text": "21",
+          "isCorrect": false
+        },
+        {
+          "id": "c",
+          "text": "42",
+          "isCorrect": true
+        },
+        {
+          "id": "d",
+          "text": "84",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "num-2",
+      "examId": "6",
+      "type": "multiple_choice",
+      "text": "Manakah di antara bilangan berikut yang merupakan bilangan prima?",
+      "points": 20,
+      "difficulty": "easy",
+      "options": [
+        {
+          "id": "a",
+          "text": "51",
+          "isCorrect": false
+        },
+        {
+          "id": "b",
+          "text": "91",
+          "isCorrect": false
+        },
+        {
+          "id": "c",
+          "text": "97",
+          "isCorrect": true
+        },
+        {
+          "id": "d",
+          "text": "119",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "num-3",
+      "examId": "6",
+      "type": "multiple_choice",
+      "text": "Tentukan sisa pembagian $2^{50}$ oleh 7.",
+      "points": 20,
+      "difficulty": "hard",
+      "options": [
+        {
+          "id": "a",
+          "text": "1",
+          "isCorrect": false
+        },
+        {
+          "id": "b",
+          "text": "2",
+          "isCorrect": false
+        },
+        {
+          "id": "c",
+          "text": "4",
+          "isCorrect": true
+        },
+        {
+          "id": "d",
+          "text": "5",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "num-4",
+      "examId": "6",
+      "type": "multiple_choice",
+      "text": "Solusi dari kongruensi linear $3x \\equiv 4 \\pmod{5}$ adalah...",
+      "points": 20,
+      "difficulty": "medium",
+      "options": [
+        {
+          "id": "a",
+          "text": "$x \\equiv 1 \\pmod{5}$",
+          "isCorrect": false
+        },
+        {
+          "id": "b",
+          "text": "$x \\equiv 2 \\pmod{5}$",
+          "isCorrect": false
+        },
+        {
+          "id": "c",
+          "text": "$x \\equiv 3 \\pmod{5}$",
+          "isCorrect": true
+        },
+        {
+          "id": "d",
+          "text": "$x \\equiv 4 \\pmod{5}$",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "num-5",
+      "examId": "6",
+      "type": "multiple_choice",
+      "text": "Jika suatu bilangan bulat $n$ ganjil, maka $n^2 - 1$ selalu habis dibagi oleh:",
+      "points": 20,
+      "difficulty": "medium",
+      "options": [
+        {
+          "id": "a",
+          "text": "4",
+          "isCorrect": false
+        },
+        {
+          "id": "b",
+          "text": "6",
+          "isCorrect": false
+        },
+        {
+          "id": "c",
+          "text": "8",
+          "isCorrect": true
+        },
+        {
+          "id": "d",
+          "text": "12",
+          "isCorrect": false
+        }
+      ]
+    },
     {
       "id": "calc-1",
       "examId": "5",
@@ -220,108 +381,39 @@
   ],
   "results": [
     {
-      "id": "8cea0a90-054b-434a-b1e5-e53a77d3ca6d",
+      "id": "33f99058-f68e-4aea-86e9-9c294b194c2b",
       "examId": "5",
-      "studentName": "Faisa Nirbita",
+      "studentName": "Toriq Afanudin",
       "score": 55,
-      "correctCount": 2,
-      "totalQuestions": 5,
-      "answers": {
-        "calc-1": "a",
-        "calc-2": "a",
-        "calc-3": "1",
-        "calc-4": "1",
-        "calc-5": "tidak tahu"
-      },
-      "gradingStatus": "graded",
-      "submittedAt": "2025-12-15T04:42:19.894Z",
-      "manualGrades": {
-        "calc-5": 5,
-        "calc-3": 5,
-        "calc-4": 5
-      },
-      "feedback": {},
-      "gradedBy": "Admin",
-      "gradedAt": "2025-12-15T10:40:15.989Z"
-    },
-    {
-      "id": "1cae506a-e25f-470e-976c-11ab1e8155c4",
-      "examId": "5",
-      "studentName": "Adhira Mahesha",
-      "score": 65,
-      "correctCount": 2,
-      "totalQuestions": 5,
-      "answers": {
-        "calc-1": "a",
-        "calc-2": "a",
-        "calc-3": "4",
-        "calc-4": "5",
-        "calc-5": "tidah tahu"
-      },
-      "gradingStatus": "graded",
-      "submittedAt": "2025-12-15T04:51:58.273Z",
-      "manualGrades": {
-        "calc-3": 10,
-        "calc-4": 10,
-        "calc-5": 5
-      },
-      "feedback": {
-        "calc-3": "tetap semangat",
-        "calc-5": "good luck"
-      },
-      "gradedBy": "Admin",
-      "gradedAt": "2025-12-15T06:12:27.230Z"
-    },
-    {
-      "id": "6303ce04-c678-4613-9b16-aed620667a4b",
-      "examId": "5",
-      "studentName": "test2",
-      "score": 40,
-      "correctCount": 2,
-      "totalQuestions": 5,
-      "answers": {
-        "calc-1": "a",
-        "calc-2": "a",
-        "calc-3": "1",
-        "calc-4": "2",
-        "calc-5": "3"
-      },
-      "gradingStatus": "pending_review",
-      "submittedAt": "2025-12-15T06:22:46.289Z"
-    },
-    {
-      "id": "fd8202ad-d798-440c-bf76-12860fad1913",
-      "examId": "5",
-      "studentName": "test3",
-      "score": 40,
-      "correctCount": 2,
-      "totalQuestions": 5,
+      "correctCount": 3,
+      "totalQuestions": 6,
       "answers": {
         "calc-1": "a",
         "calc-2": "a",
         "calc-3": "4",
         "calc-4": "1",
-        "calc-5": "p"
+        "calc-5": "y",
+        "610dcd7a-4d31-4b25-8b30-7539cd0cb770": "b"
       },
       "gradingStatus": "pending_review",
-      "submittedAt": "2025-12-15T09:05:02.119Z"
+      "submittedAt": "2025-12-15T13:13:39.757Z"
     },
     {
-      "id": "705cea5d-6904-4b0c-ad83-17abf3c80759",
-      "examId": "5",
-      "studentName": "test4",
-      "score": 20,
-      "correctCount": 1,
+      "id": "53607b31-992a-4528-8e7c-ce86f9cb4ee9",
+      "examId": "6",
+      "studentName": "Toriq Afanudin",
+      "score": 60,
+      "correctCount": 3,
       "totalQuestions": 5,
       "answers": {
-        "calc-1": "b",
-        "calc-2": "a",
-        "calc-3": "4",
-        "calc-4": "4",
-        "calc-5": "4"
+        "num-1": "c",
+        "num-2": "c",
+        "num-3": "c",
+        "num-4": "b",
+        "num-5": "d"
       },
-      "gradingStatus": "pending_review",
-      "submittedAt": "2025-12-15T09:25:38.909Z"
+      "gradingStatus": "auto_graded",
+      "submittedAt": "2025-12-15T13:26:12.147Z"
     }
   ],
   "questionBank": [
