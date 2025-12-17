@@ -555,7 +555,7 @@ export default function EditQuestion() {
 
                     {q.type === "multiple_choice" && q.options && (
                       <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {q.options.map((opt) => (
+                        {q.options.map((opt, optIndex) => (
                           <div
                             key={opt.id}
                             className={`p-2 rounded border ${
@@ -565,7 +565,7 @@ export default function EditQuestion() {
                             }`}
                           >
                             <span className="font-bold mr-2 text-slate-700 dark:text-slate-300">
-                              {opt.id.toUpperCase()}.
+                              {String.fromCharCode(65 + optIndex)}.
                             </span>
                             <span className="text-slate-700 dark:text-slate-300">
                               <LatexRenderer>{opt.text}</LatexRenderer>
@@ -577,6 +577,17 @@ export default function EditQuestion() {
                             )}
                           </div>
                         ))}
+                      </div>
+                    )}
+                    
+                    {q.type === "short_answer" && q.correctAnswer && (
+                      <div className="mt-4 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                        <span className="text-sm font-semibold text-green-800 dark:text-green-300 block mb-1">
+                          Kunci Jawaban:
+                        </span>
+                        <span className="text-slate-700 dark:text-slate-300 font-medium">
+                          {q.correctAnswer}
+                        </span>
                       </div>
                     )}
                   </div>

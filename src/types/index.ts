@@ -114,7 +114,7 @@ export interface CreateQuestionData {
 export interface ActivityLogEntry {
   action: string;
   timestamp: string;
-  metadata?: any;
+  metadata?: unknown;
 }
 
 // Proctoring Data
@@ -123,7 +123,7 @@ export interface ProctoringData {
   suspiciousActivities: Array<{
     type: 'tab_switch' | 'fullscreen_exit' | 'multiple_faces' | 'no_face' | 'copy_paste' | 'network_disconnect';
     timestamp: string;
-    metadata?: any;
+    metadata?: unknown;
   }>;
   ipAddress?: string;
   deviceFingerprint?: string;

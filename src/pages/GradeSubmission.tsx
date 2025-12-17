@@ -345,7 +345,7 @@ export default function GradeSubmission() {
                   ) : question.type === "multiple_choice" &&
                     question.options ? (
                     <div className="space-y-2">
-                      {question.options.map((opt) => (
+                      {question.options.map((opt, index) => (
                         <div
                           key={opt.id}
                           className={`p-2 rounded border ${
@@ -359,7 +359,7 @@ export default function GradeSubmission() {
                           }`}
                         >
                           <span className="font-bold mr-2 text-slate-700 dark:text-slate-300">
-                            {opt.id.toUpperCase()}.
+                            {String.fromCharCode(65 + index)}.
                           </span>
                           <span className="text-slate-700 dark:text-slate-300">
                             <LatexRenderer>{opt.text}</LatexRenderer>

@@ -1,0 +1,63 @@
+# Rekomendasi Fitur Tambahan untuk Aplikasi Web-Ujian-Online (ExamPro)
+
+Berdasarkan analisis aplikasi, berikut adalah rekomendasi fitur tambahan yang dapat diterapkan untuk meningkatkan fungsionalitas, keamanan, dan pengalaman pengguna. Rekomendasi ini diprioritaskan berdasarkan dampak dan kompleksitas implementasi.
+
+## 1. Timer Otomatis untuk Ujian (Prioritas Tinggi)
+- **Deskripsi**: Tambahkan countdown timer yang secara otomatis mengirimkan jawaban saat waktu habis. Siswa dapat melihat sisa waktu, dan admin dapat mengatur durasi per ujian.
+- **Alasan**: Fitur esensial untuk ujian nyata; saat ini hanya ada enforcement fullscreen tanpa batas waktu.
+- **Kompleksitas**: Sedang (perlu state timer di Redux, useEffect untuk countdown, dan logic auto-submit).
+- **Implementasi**: Update Exam.tsx dan types/index.ts untuk field 'duration' di Exam.
+
+## 2. Auto-Save Jawaban Siswa (Prioritas Tinggi)
+- **Deskripsi**: Simpan jawaban secara otomatis setiap beberapa detik ke localStorage atau API, untuk mencegah kehilangan data jika browser crash.
+- **Alasan**: Meningkatkan UX; siswa tidak perlu khawatir jawaban hilang.
+- **Kompleksitas**: Rendah (gunakan useEffect dengan interval di Exam.tsx).
+
+## 3. Notifikasi dan Reminder (Prioritas Sedang)
+- **Deskripsi**: Email/SMS reminder untuk siswa sebelum ujian dimulai, atau notifikasi in-app untuk admin saat ada submission baru.
+- **Alasan**: Meningkatkan engagement; integrasi dengan service seperti SendGrid atau Twilio.
+- **Kompleksitas**: Sedang (perlu backend nyata untuk email; mulai dengan in-app toast).
+
+## 4. Analytics dan Laporan Lanjutan (Prioritas Sedang)
+- **Deskripsi**: Dashboard analytics dengan chart (misalnya rata-rata skor, distribusi jawaban, tingkat kesulitan soal) menggunakan library seperti Chart.js.
+- **Alasan**: Membantu admin memantau performa ujian dan siswa.
+- **Kompleksitas**: Sedang (tambah endpoint API untuk stats, dan komponen chart di Dashboard).
+
+## 5. Randomization Soal dan Opsi (Prioritas Sedang)
+- **Deskripsi**: Acak urutan soal atau opsi jawaban per siswa untuk mencegah cheating.
+- **Alasan**: Tingkatkan integritas ujian; sudah ada file randomize.ts di utils, tapi belum terintegrasi penuh.
+- **Kompleksitas**: Rendah (update logic di Exam.tsx untuk shuffle soal).
+
+## 6. Real-Time Monitoring untuk Admin (Prioritas Rendah)
+- **Deskripsi**: Admin bisa monitor siswa secara real-time (siapa yang sedang ujian, progress, violations) via WebSocket atau polling.
+- **Alasan**: Untuk ujian besar; tingkatkan pengawasan.
+- **Kompleksitas**: Tinggi (perlu backend real-time seperti Socket.io).
+
+## 7. Backup dan Restore Data (Prioritas Rendah)
+- **Deskripsi**: Fitur export/import data ujian dan hasil ke JSON/CSV.
+- **Alasan**: Untuk disaster recovery; saat ini bergantung pada json-server.
+- **Kompleksitas**: Rendah (tambah button export di Dashboard).
+
+## 8. Multi-Language Support (i18n) (Prioritas Rendah)
+- **Deskripsi**: Dukung bahasa Indonesia dan Inggris menggunakan library seperti react-i18next.
+- **Alasan**: Untuk skalabilitas global.
+- **Kompleksitas**: Sedang (wrap text dengan translation keys).
+
+## 9. AI-Assisted Grading (Prioritas Rendah)
+- **Deskripsi**: Integrasi AI (misalnya OpenAI API) untuk auto-grade essay berdasarkan keywords atau rubrik.
+- **Alasan**: Kurangi beban manual grading.
+- **Kompleksitas**: Tinggi (perlu API eksternal dan fine-tuning).
+
+## 10. Integrasi dengan LMS (Learning Management System) (Prioritas Rendah)
+- **Deskripsi**: Export hasil ke platform seperti Moodle atau Google Classroom.
+- **Alasan**: Untuk ekosistem pendidikan yang lebih luas.
+- **Kompleksitas**: Tinggi (perlu API integrations).
+
+## Rekomendasi Teknis Tambahan
+- **Migrasi Backend**: Ganti json-server dengan backend nyata (misalnya Express.js + MongoDB) untuk persistence dan skalabilitas.
+- **Testing**: Tambahkan unit tests dengan Jest/React Testing Library untuk komponen kunci.
+- **Performance**: Optimalkan dengan lazy loading routes dan memoization di komponen besar.
+- **Security**: Tambahkan autentikasi (misalnya dengan Firebase Auth) dan enkripsi data sensitif.
+- **Deployment**: Gunakan Vercel/Netlify untuk frontend, dan Heroku untuk backend.
+
+Tanggal Rekomendasi: 16 Desember 2025

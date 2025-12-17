@@ -377,6 +377,43 @@
       ],
       "questionBankId": "qb-1",
       "isFromBank": true
+    },
+    {
+      "id": "2317",
+      "examId": "4",
+      "type": "multiple_choice",
+      "text": "Sebuah matriks $A$ memiliki ordo $3 \\times 3$. Jika determinan dari $A$ adalah $det(A) = 5$, berapakah determinan dari $2A$?",
+      "points": 15,
+      "options": [
+        {
+          "id": "a",
+          "text": "$det(2A) = 10$",
+          "isCorrect": false
+        },
+        {
+          "id": "b",
+          "text": "$det(2A) = 40$",
+          "isCorrect": true
+        },
+        {
+          "id": "c",
+          "text": "$det(2A) = 5$",
+          "isCorrect": false
+        },
+        {
+          "id": "d",
+          "text": "$det(2A) = 25$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "medium",
+      "tags": [
+        "matrices",
+        "determinant",
+        "properties"
+      ],
+      "questionBankId": "qb-1",
+      "isFromBank": true
     }
   ],
   "results": [
@@ -416,39 +453,39 @@
       "submittedAt": "2025-12-15T13:26:12.147Z"
     },
     {
-      "id": "d80a961d-fb74-4f2b-add5-6286d852ffef",
-      "examId": "5",
-      "studentName": "Faisa Nirbita",
-      "score": 20,
-      "correctCount": 1,
-      "totalQuestions": 6,
+      "id": "bd1786f8-3d9e-48ed-9bce-ffa04290db98",
+      "examId": "6",
+      "studentName": "Rasyida Faiz Anggina Sari",
+      "score": 40,
+      "correctCount": 2,
+      "totalQuestions": 5,
       "answers": {
-        "calc-1": "a",
-        "calc-2": "b",
-        "calc-3": "4",
-        "calc-4": "4",
-        "610dcd7a-4d31-4b25-8b30-7539cd0cb770": "c"
+        "num-1": "c",
+        "num-2": "d",
+        "num-3": "a",
+        "num-4": "a",
+        "num-5": "c"
       },
-      "gradingStatus": "pending_review",
-      "submittedAt": "2025-12-15T13:46:51.943Z"
+      "gradingStatus": "auto_graded",
+      "submittedAt": "2025-12-15T14:42:31.394Z"
     },
     {
-      "id": "d90f4c06-8c56-426f-93fd-9d9fb1f91c4c",
+      "id": "2ed1d9ab-03bb-44b7-a292-fd2d0ef02c82",
       "examId": "5",
-      "studentName": "Annida Hanifah",
-      "score": 20,
-      "correctCount": 1,
+      "studentName": "Dhiya Rohadatul Aisy",
+      "score": 40,
+      "correctCount": 2,
       "totalQuestions": 6,
       "answers": {
         "calc-1": "a",
-        "calc-2": "b",
+        "calc-2": "a",
         "calc-3": "4",
-        "calc-4": "4",
-        "calc-5": "wewedsdsd",
+        "calc-4": "5",
+        "calc-5": "tidak tahu",
         "610dcd7a-4d31-4b25-8b30-7539cd0cb770": "d"
       },
       "gradingStatus": "pending_review",
-      "submittedAt": "2025-12-15T13:47:42.600Z"
+      "submittedAt": "2025-12-15T23:01:49.933Z"
     }
   ],
   "questionBank": [
@@ -489,7 +526,7 @@
       ],
       "createdBy": "Admin",
       "createdAt": "2025-12-15T18:54:34.204142",
-      "usageCount": 1,
+      "usageCount": 2,
       "isPublic": true
     },
     {
