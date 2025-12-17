@@ -30,9 +30,9 @@ export default function QuestionCard({
   const isLast = questionIndex === totalQuestions - 1;
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-6 min-h-[400px] flex flex-col transition-colors duration-300">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-4 sm:p-6 min-h-[400px] flex flex-col transition-colors duration-300">
       {/* Question */}
-      <div className="prose prose-lg dark:prose-invert max-w-none mb-8 flex-1">
+      <div className="prose prose-lg dark:prose-invert max-w-none w-full break-words overflow-hidden mb-8 flex-1">
         <span className="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold px-2 py-1 rounded mb-4">
           Soal No. {questionIndex + 1}
         </span>
@@ -47,7 +47,7 @@ export default function QuestionCard({
           </div>
         )}
 
-        <div className="text-slate-800 dark:text-slate-200">
+        <div className="text-slate-800 dark:text-slate-200 overflow-x-auto">
           <LatexRenderer>{question.text}</LatexRenderer>
         </div>
       </div>
@@ -58,7 +58,7 @@ export default function QuestionCard({
           question.options?.map((option) => (
             <label
               key={option.id}
-              className={`flex items-start p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
+              className={`flex items-start p-3 sm:p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
                 answer === option.id
                   ? "border-primary-600 bg-primary-50 dark:bg-primary-900/20"
                   : "border-slate-200 dark:border-slate-700 hover:border-primary-200 dark:hover:border-primary-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/50"

@@ -193,10 +193,10 @@ export default function Dashboard() {
                 {exams.map((exam) => (
                   <div
                     key={exam.id}
-                    className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-200 p-6"
+                    className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-200 p-4 sm:p-6"
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1 space-y-3">
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
+                      <div className="flex-1 space-y-3 w-full">
                         {/* Title & Status */}
                         <div className="flex items-center gap-3">
                           <h3 className="text-lg font-bold text-slate-800 dark:text-white">
@@ -255,7 +255,7 @@ export default function Dashboard() {
                       </div>
 
                       {/* Actions */}
-                      <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 p-1.5 rounded-xl border border-slate-100 dark:border-slate-700">
+                      <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 p-1.5 rounded-xl border border-slate-100 dark:border-slate-700 w-full sm:w-auto justify-end sm:justify-start">
                         <Link
                           to={`/admin/ujian/${exam.id}/soal`}
                           className="p-2 text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-white dark:hover:bg-slate-700 rounded-lg transition-all duration-200"
