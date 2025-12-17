@@ -66,7 +66,7 @@ export default function Dashboard() {
               <span className="text-xl font-bold text-slate-800 dark:text-white">
                 ExamPro
               </span>
-              <span className="px-2 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-xs font-semibold rounded-md">
+              <span className="hidden sm:inline-block px-2 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-xs font-semibold rounded-md">
                 Admin
               </span>
             </div>
