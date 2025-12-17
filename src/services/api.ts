@@ -9,7 +9,7 @@ import type {
 } from "../types";
 
 const api = axios.create({
-  baseURL: "https://api-web-ujian-3.vercel.app/",
+  baseURL: import.meta.env.VITE_API,
   headers: {
     "Content-Type": "application/json",
   },
